@@ -1,0 +1,3 @@
+::ng-deep .form-control:disabled {
+    background-color: #fff !important;
+}

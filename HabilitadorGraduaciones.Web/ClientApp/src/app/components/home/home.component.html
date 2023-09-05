@@ -1,0 +1,351 @@
+<app-nav-menu (dataupdateevent)="cambiarLenguaje($event)" [usuario]="usuario" *ngIf="!isAdminHelp"></app-nav-menu>
+<div class="container container-outlet cuerpoAplicacion" *ngIf="!movil">
+  <div class="col-xs-12 bannerTitulo" *ngIf="!isAdminHelp">
+    <div class="card card-img-main">
+      <img src="/assets/img/Fondo Azul.png" class="img-main" alt="Graduaciones">
+    </div>
+    <div class="card card-graduacion-alumno">
+      <span>{{'encabezado.titulo' | translate}}</span>
+    </div>
+  </div>
+
+  <div class="card  cardPrincipal" [ngClass]="!isAdminHelp == true ? 'mat-elevation-z8' : 'shadow-card'">
+    <div class="row">
+      <div class="col-xs-3 col-md-3 col-lg-3">
+        <div class="card">
+          <div class="col-xs-12 card-title" [ngClass]="{'card-titles-laptop': laptop}">
+            <span [ngClass]="{'font-titles-laptop': laptop}">{{'miInformacion.titulo' | translate}}</span>
+          </div>
+          <img src="/assets/img/Headercard.svg" class="card-img-top img-header-card" alt="header card">
+          <div class="card-body" style="padding:18px 9px !important;">
+            <div class="float-end"><a class="a-card-header" (click)="abrirModal('MiInformacion')" *ngIf="isCargadoDistincion && isCargadoUsuario && edicionDatosPersonales">{{'miInformacion.btnEditar' | translate}}</a></div>
+            <div class="item-list"><em class="bi bi-person"></em> <span class="label"> {{usuario.nombre}}
+                {{usuario.apeidoPaterno}} {{usuario.apeidoMaterno}}</span></div>
+            <div class="item-list"><em class="bi bi-credit-card-2-front"></em> <span class="label-negrita">
+                {{'miInformacion.matricula' | translate}}</span><span class="label"> {{usuario.matricula}}</span></div>
+            <div class="item-list"><em class="bi bi-journal-bookmark"></em> <span class="label-negrita">
+                {{'miInformacion.progAcademico' | translate}} </span><span class="label">
+                {{usuario.programaAcademico}}</span></div>
+            <div class="item-list"><em class="bi bi-envelope"></em> <span class="label"> {{usuario.correo}}</span></div>
+
+            <hr class="line">
+            <div class="d-inline">
+              <em class="bi bi-exclamation-circle"></em>
+            </div>
+            <div class="d-inline">
+              <span class="txt-info">
+                {{'miInformacion.advertencia' | translate}}
+              </span>
+            </div>
+          </div>
+
+        </div>
+        <div class="card card-down">
+          <div class="col-xs-12 card-title" [ngClass]="{'card-titles-laptop': laptop}">
+            <span [ngClass]="{'font-titles-laptop': laptop}">{{'miAcompanamiento.titulo' | translate}}</span>
+          </div>
+          <img src="/assets/img/Headercard.svg" class="card-img-top img-header-card" alt="header card">
+          <div class="card-body">
+            <div class="item-list"><em class="bi bi-person-circle"></em> <span class="label-negrita">
+                {{'miAcompanamiento.dirPrograma' | translate}}</span><br><span class="label-grayBold">
+                {{usuario.directorPrograma}}</span>
+              <br><span class="label-gray"> {{usuario.correoDirector}}</span>
+            </div>
+            <div class="item-list"><em class="bi bi-person-circle"></em> <span class="label-negrita">
+                {{'miAcompanamiento.mentorEstudiantil' | translate}}</span><br><span
+                class="label-grayBold">{{usuario.mentor}} </span>
+              <br><span class="label-gray"> {{usuario.correoMentor}}</span>
+            </div>
+            <div class="item-list"><em class="bi bi-person-circle"></em> <span class="label-negrita"> TECServices</span>
+              <br><span class="label-gray"> TECservices@servicios.tec.mx</span>
+            </div>
+
+          </div>
+        </div>
+        <div class="card card-down">
+          <div class="col-xs-12 card-title" [ngClass]="{'card-titles-laptop': laptop}">
+            <span [ngClass]="{'font-titles-laptop': laptop}">{{ 'calendario.titulo' | translate }}</span>
+            <div class="float-end"><em class="bi bi-info-circle" matTooltip="{{ 'calendario.tooltip' | translate }}"
+                [matTooltipPosition]="'after'"></em> </div>
+          </div>
+          <img src="/assets/img/Headercard.svg" class="card-img-top img-header-card" alt="header card">
+          <div class="card-body">
+            <div class="item-list">
+              <div style="margin-top: 80px;" *ngIf="isLoading">
+                <ngx-spinner *ngIf="isLoading" bdColor="rgba(0,0,0,0.1);" size="medium"
+                  style="position: flex; margin-top: 1px;" color="#000000" type="ball-clip-rotate" size="default"
+                  [fullScreen]="false"></ngx-spinner>
+              </div>
+              <div *ngIf="!isLoading">
+                <em class="bi bi-box-arrow-up-right small-icon urlIcon" (click)="redirectCalendario()"></em>
+                <a class="label-negrita" [ngClass]="{'linkVacio': linkVacio, 'urlIcon': !linkVacio}"
+                  (click)="redirectCalendario()">{{ 'calendario.detalle' | translate }}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-6 col-md-6 col-lg-6 p-0">
+        <div class="card card-greeting-message" *ngIf="bandProspecto">
+          <span>¡{{ 'principal.saludo' | translate }} {{usuario.nombre}}!
+            <!--{{'principal.mensajeProspecto' | translate}}--></span>
+        </div>
+        <div class="card card-greeting-message" *ngIf="bandCandidato" [ngClass]="{'f15': laptopCorreccion || laptop, 'f20' : !laptopCorreccion}">
+          <span>¡{{ 'principal.saludo' | translate }} {{usuario.nombre}}! {{'principal.mensajeCandidato' |
+            translate}}</span>
+        </div>
+        <div class="card card-greeting-message" *ngIf="bandAlumnoNormal">
+          <span>¡{{ 'principal.saludo' | translate }} {{usuario.nombre}}!
+            <!--{{'principal.mensajeAlumnoNormal' | translate}} --></span>
+        </div>
+        <div class="card card-greeting-message" *ngIf="bandExploracion" [ngClass]="{'f15': laptopCorreccion || laptop, 'f20' : !laptopCorreccion}">
+          <span>¡{{ 'principal.saludo' | translate }} {{usuario.nombre}}! {{'principal.mensajeExploracion' | translate}}
+          </span>
+        </div>
+        <div class="row m-0">
+          <div class="col-6" style="padding-left: 0;">
+            <div class="card recorrido">
+              <div class="item-list" style="margin-bottom: 20px;">
+                <em class="bi bi-mortarboard graduate-icon-movil"></em>
+                <span class="label-recorrido"
+                  [ngClass]="{'f16': laptopCorreccion || laptop, 'f20' : !laptopCorreccion}">{{'miRecorridoGraduacion.titulo'
+                  | translate}}</span>
+                <div class="float-end float-info" style="display:none"><em class="bi bi-info-circle"></em> </div>
+              </div>
+
+              <div class="recorrido-bar" *ngIf="barraTF">
+                <div class="progress" style="height:19px;">
+                  <div class="progress-bar f12" role="progressbar" [ngStyle]="{'width':barra_Progreso}"
+                    style="height: 20px;text-align: right;border-radius:6px;padding-right:4px;" aria-valuenow="25"
+                    aria-valuemin="0" aria-valuemax="100">{{barra_Progreso}}</div>
+                </div>
+                <div class="float-end float-info" style="height:37px;"><span class="f12b"
+                    style="position:absolute;bottom:43px;right:25px;">{{barra_ProgresoTotal}}</span></div>
+              </div>
+
+              <div class="recorrido-bar" *ngIf="!barraTF">
+                <div class="progress" style="height:19px;">
+                  <div class="progress-bar f12" role="progressbar" [ngStyle]="{'width':barra_Progreso}"
+                    style="height: 20px;text-align: right;border-radius:6px;padding-right:4px;" aria-valuenow="25"
+                    aria-valuemin="0" aria-valuemax="100"></div><span class="f12b">{{barra_ProgresoPorcentaje}}</span>
+                </div>
+                <div class="float-end float-info" style="height:35px;"><span class="f12b"
+                    style="position:absolute;bottom:43px;right:25px;">{{barra_ProgresoTotal}}</span></div>
+              </div>
+
+
+            </div>
+          </div>
+          <div class="col-6 p-0">
+            <div class="card estimacion" style="margin:0 !important;">
+              <div class="item-list">
+                <span *ngIf="periodoConfirmado" class="label-recorrido" style="padding-left: 0!important;"
+                  [ngClass]="{'f14': laptopCorreccion || laptop, 'f16' : !laptopCorreccion}">{{'estimacionGraduacion.titulo-confirmado'
+                  | translate}}</span>
+                <span *ngIf="!periodoConfirmado" class="label-recorrido" style="padding-left: 0!important;"
+                  [ngClass]="{'f16': laptopCorreccion || laptop, 'f20' : !laptopCorreccion}">{{'estimacionGraduacion.titulo'
+                  | translate}}</span>
+              </div>
+
+              <div class="estimacion-date" style="height: 27px;"
+                [ngStyle]="{'width': laptopCorreccion ? '100%': '75%'}">
+                <span>{{periodoActual}}</span>
+              </div>
+              <div class="float-end"><a class="link-date cursor-pointer"
+                  (click)="abrirModal('ModificarFecha')">{{'estimacionGraduacion.modificarFecha' | translate}}</a></div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="card shadow-card">
+          <h2 style="margin: 15px;">{{'requisitosAcademicosG.titulo' | translate}}</h2>
+          <ngx-spinner *ngIf="isLoading" bdColor="rgba(0,0,0,0.1);" size="large" color="#000000" type="ball-clip-rotate"
+            size="default" [fullScreen]="false" style="margin-top: 70px; z-index: 0;"></ngx-spinner>
+          <div class="row rowRequisitos">
+            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-6 col-laptop" *ngFor="let card of ListaCard">
+              <div class="card mat-elevation-z8 cursorPointer" (click)="openCardDialog(card)">
+                <div class="card-body">
+                    <div class="row text-end" style=" position: absolute;right: 20px;top: 6px;">
+                      <em class="bi bi-arrows-angle-expand"></em>
+                    </div>
+                    <div class="row">
+                      <div class="col-4 text-center p-0">
+                        <svg [attr.width]="laptopCorreccion || laptop ? 90 : 100"
+                          [attr.height]="laptopCorreccion || laptop ? 90 : 100" xmlns="http://www.w3.org/2000/svg">
+                          <g>
+                            <ellipse stroke-width="0" [attr.ry]="laptopCorreccion || laptop ? 38 : 50"
+                              [attr.ry]="laptopCorreccion || laptop ? 38 : 50" id="svg_3"
+                              [attr.cy]="laptopCorreccion || laptop ? 45 : 50"
+                              [attr.cx]="laptopCorreccion || laptop ? 45 : 50" [attr.fill]="card.color" />
+                            <ellipse stroke-width="0" [attr.ry]="laptopCorreccion || laptop ? 30 : 40"
+                              [attr.ry]="laptopCorreccion || laptop ? 30 : 40" id="svg_4"
+                              [attr.cy]="laptopCorreccion || laptop ? 45 : 50"
+                              [attr.cx]="laptopCorreccion || laptop ? 45 : 50" fill="#ffffff" />
+                            <ellipse stroke-width="0" [attr.ry]="laptopCorreccion || laptop ? 22 : 26"
+                              [attr.ry]="laptopCorreccion || laptop ? 22 : 26" id="svg_6"
+                              [attr.cy]="laptopCorreccion || laptop ? 45 : 50"
+                              [attr.cx]="laptopCorreccion || laptop ? 45 : 50" fill="#0053f1" />
+                            <path
+                              [attr.transform]="laptopCorreccion || laptop ? 'translate(33, 33) scale(1.5 1.5)' : 'translate(38, 38) scale(1.6 1.6)'"
+                              fill="white" [attr.d]="card.icono" />
+                          </g>
+                        </svg>
+                        <div class="col-12 justify-content-center cumple-no-cumple"
+                          *ngIf="card.isCumple && card.aplica">
+                          <span class="spanCumple"><em class="bi bi-check-circle" style="color:white;"></em>
+                            {{'requisitosAcademicosG.cumple' | translate}}</span>
+                        </div>
+                        <div class="col-12 justify-content-center cumple-no-cumple"
+                          *ngIf="!card.isCumple && card.aplica">
+                          <span class="spanNoCumple"><em class="bi bi-exclamation-circle" style="color:white;"></em>
+                            {{'requisitosAcademicosG.noCumple' | translate}}</span>
+                        </div>
+                        <div class="col-12 justify-content-center cumple-no-cumple" *ngIf="!card.aplica">
+                          <span class="spanNoAplica"><em class="bi bi-exclamation-circle" style="color:white;"></em>
+                            {{'requisitosAcademicosG.noAplica' | translate}}</span>
+                        </div>
+                      </div>
+                      <div class="col-8 pt-2 descRequisito">
+                        <p [ngClass]="{'f17b': laptopCorreccion, 'f18b' : !laptopCorreccion}">{{card.titulo}}</p>
+                        <div [className]="movil ? 'claseMovil' : 'ClaseNormal'">
+                          <span class="purple-font fw-bold" [ngClass]="{'f14': laptopCorreccion, 'f16' : !laptopCorreccion}" *ngIf="card.Id == 6 && !carreraExenta  && card.descripcion === 'Examen Integrador' ">{{'modal-examen-conocimiento.integrador' | translate}}</span>
+                          <span class="purple-font fw-bold" [ngClass]="{'f14': laptopCorreccion, 'f16' : !laptopCorreccion}" *ngIf="card.Id == 6 && !carreraExenta  && card.descripcion !== 'Examen Integrador' ">{{card.descripcion}}</span>
+                          <span class="purple-font fw-bold" [ngClass]="{'f14': laptopCorreccion, 'f16' : !laptopCorreccion}" *ngIf="card.Id == 6 && carreraExenta">{{'modal-examen-conocimiento.descripcion' | translate}}</span>
+                          <span class="subtitulo" *ngIf="card.Id == 2">{{'tarjetas.contenido.ingles.subtitulo' | translate }}</span>
+                        </div>
+                        <table class="tablaRequisitos" aria-hidden="true" aria-describedby="mydesc">
+                          <tr *ngFor="let ls of card.list">
+                            <td class="purple-font fw-bold"
+                              [ngClass]="{'f14': laptopCorreccion, 'f16' : !laptopCorreccion}">{{ls.nombre}} </td>
+                            <td class="text-end" [ngClass]="{'f14': laptopCorreccion, 'f16' : !laptopCorreccion}">
+                              {{ls.valor}}</td>
+                          </tr>
+                          <tr style="height: 18px;"></tr>
+                          <tr>
+                            <td *ngIf="card.Id != 8" class="gray-text" style="position: absolute;bottom: 19px;"
+                              [ngClass]="{'f11': laptopCorreccion, 'f12' : !laptopCorreccion}">
+                              {{'requisitosAcademicosG.ultimaActualizacion' | translate}} {{card.ultimaActualizacion |
+                              date: 'dd/MM/yyyy' }}</td>
+                            <td *ngIf="card.Id == 8" class="gray-text" style="position: absolute;bottom: 10px;"
+                              [ngClass]="{'f11': laptopCorreccion, 'f12' : !laptopCorreccion}">
+                              {{'requisitosAcademicosG.ultimaActualizacion' | translate}} {{card.ultimaActualizacion |
+                              date: 'dd/MM/yyyy' }}</td>
+                          </tr>
+                        </table>
+                      </div>
+                    </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-3 col-md-3 col-lg-3">
+        <div class="card">
+          <div class="col-xs-12 card-title card-title" [ngClass]="{'card-titles-laptop': laptop}">
+            <span [ngClass]="{'font-titles-laptop': laptop}"> {{ 'distincionesAdicionales.titulo' | translate }} </span>
+            <em class="bi bi-info-circle float-end" matTooltip="{{ 'distincionesAdicionales.tooltip' | translate }}"
+            [matTooltipPosition]="'after'"></em>
+          </div>
+          <img src="/assets/img/Headercard.svg" class="card-img-top img-header-card" alt="header card">
+          <div class="card-body">
+            <div class="f16 mb-2" *ngIf="distincion.hasConcentracion || distincion.hasDiploma || distincion.hasUlead">
+              <span style="margin-left: 10px; font-weight: 600; color: #707070;"> {{ 'distincionesAdicionales.estasInscrito' | translate }} </span>
+            </div>
+            <tr *ngFor="let lstc of distincion.lstConcentracion">
+              <div class="item-list">
+                <em class="bi-exclamation-circle-fill" style="color: #EF8F00"></em>
+                <span style="margin-left: 10px;">{{'distincionesAdicionales.concentracionL' | translate}}</span><span style="font-weight: 600;"> {{lstc}}</span>
+              </div>
+            </tr>
+              <div [hidden]="!distincion.hasDiploma" class="item-list">
+                  <em class="bi-exclamation-circle-fill" [ngStyle]="{'color': '#EF8F00'}"></em>
+                  <span style="margin-left: 10px; font-weight: 600;">{{'distincionesAdicionales.diplomaInternacional' | translate}}</span>
+              </div>
+              <div [hidden]="!distincion.hasUlead" class="item-list">
+                  <em class="bi-exclamation-circle-fill" [ngStyle]="{'color': '#EF8F00'}"></em>
+                  <span style="margin-left: 10px;font-weight: 600;">{{'distincionesAdicionales.uleadL' | translate}}</span>
+              </div>
+              <hr class="line" *ngIf="distincion.hasConcentracion || distincion.hasDiploma || distincion.hasUlead">
+              <div class="d-inline" *ngIf="distincion.hasConcentracion || distincion.hasDiploma || distincion.hasUlead">
+                <em class="bi bi-exclamation-circle"></em>
+              </div>
+              <div class="d-inline" *ngIf="distincion.hasConcentracion || distincion.hasDiploma || distincion.hasUlead">
+                <span class="txt-info">
+                  {{'distincionesAdicionales.advertencia' | translate }} <a [href]="urlDistinciones" target="_blank">{{'distincionesAdicionales.Click' | translate }}</a>
+                </span>
+              </div><br *ngIf="distincion.hasConcentracion || distincion.hasDiploma || distincion.hasUlead"/>
+              <div class="d-inline" *ngIf="!distincion.hasConcentracion && (distincion.hasDiploma || distincion.hasUlead) ">
+                <em class="bi bi-exclamation-circle"></em>
+              </div>
+              <div class="d-inline" *ngIf="!distincion.hasConcentracion && (distincion.hasDiploma || distincion.hasUlead) ">
+                <span class="txt-info">
+                  {{'distincionesAdicionales.noConcentracion' | translate}}
+                </span>
+              </div>
+
+              <br *ngIf="distincion.hasConcentracion || distincion.hasDiploma || distincion.hasUlead"/>
+              <div class="d-inline" *ngIf="!distincion.hasConcentracion && !distincion.hasDiploma && !distincion.hasUlead">
+                <em class="bi bi-exclamation-circle"></em>
+              </div>
+              <div class="d-inline" *ngIf="!distincion.hasConcentracion && !distincion.hasDiploma && !distincion.hasUlead">
+                <span class="txt-info">
+                  {{'distincionesAdicionales.noDistincionesConcetracion' | translate}}
+                </span>
+              </div>
+          </div>
+        </div>
+        <div class="card card-down">
+          <div class="col-xs-12 card-title card-title" [ngClass]="{'card-titles-laptop': laptop}">
+            <span [ngClass]="{'font-titles-laptop': laptop}">{{'tramitesAdministrativos.titulo' | translate}}</span>
+          </div>
+          <img src="/assets/img/Headercard.svg" class="card-img-top img-header-card" alt="header card">
+          <div class="card-body">
+            <div class="item-list"><em class="bi bi-box-arrow-up-right small-icon urlIcon" (click)="redirectTesoreria();"></em>
+              <a class="label-negrita urlIcon" (click)="redirectTesoreria();">{{'tramitesAdministrativos.gestionCuenta' | translate}}</a><br>
+              <span class="label-gray">{{'tramitesAdministrativos.actualizacion' | translate}} {{dateTramitesAdmon | date: 'dd/MM/yyyy'}}</span>
+            </div>
+            <div class="item-list"><em class="bi bi-box-arrow-up-right small-icon urlIcon" (click)="redirectPrestamo();"></em>
+              <a class="label-negrita urlIcon" (click)="redirectPrestamo();">{{'tramitesAdministrativos.prestamoEducativo' | translate}}</a><br>
+              <span class="label-gray">{{'tramitesAdministrativos.actualizacion' | translate}} {{dateTramitesAdmon | date: 'dd/MM/yyyy'}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="card card-down" style="z-index: 0 !important;">
+          <div class="card-body card-avisos">
+            <div id="carouselAvisos" class="carousel slide carousel-fade" data-bs-ride="carousel">
+              <div class="carousel-indicators">
+                <button *ngFor="let aviso of avisos; let index = index" [class.active]="index == 0" type="button"
+                  data-bs-target="#carouselAvisos" [attr.data-bs-slide-to]="index" aria-current="true"
+                  [attr.aria-label]="index"></button>
+              </div>
+              <div class="carousel-inner">
+                <div class="carousel-item carousel-grad" *ngFor="let aviso of avisos; let index = index"
+                  [class.active]="index == 0">
+                  <h1 class="carousel-caption title-caption">{{'avisos.titulo' | translate}}</h1>
+                  <img src={{aviso.urlImage}} class="d-block w-100 img-carr" alt="Aviso"
+                    onerror="this.src='/assets/img/defaultAviso.png';">
+                  <div class="carousel-caption d-md-block desc-caption">
+                    <h2 style="margin-bottom: 8px;">{{aviso.titulo}}</h2>
+                    <button class="btn btn-default btnVer"
+                      (click)="verAvisos(this.usuario.matricula.toString())">{{'avisos.verMas' | translate}}</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="margin-top: -16px;" *ngIf="movil">
+  <app-home-movil [usuario]="usuario" [ListaCard]="ListaCard" [periodoActual]="periodoActual"
+    (openCardDialog)="openCardDialog($event)" [avisos]="avisos" [barra_Progreso]="barra_Progreso"
+    [barra_ProgresoTotal]="barra_ProgresoTotal" [barra_ProgresoPorcentaje]="barra_ProgresoPorcentaje"
+    [barraTF]="barraTF" [distincion]="distincion" [linkCalendario]="linkCalendario"
+    [periodoConfirmado]="periodoConfirmado" [bandProspecto]="bandProspecto" [bandCandidato]="bandCandidato"
+    [bandAlumnoNormal]="bandAlumnoNormal" [urlPrestamo]="urlPrestamo" [urlTesoreria]="urlTesoreria"
+    [urlDistinciones]="urlDistinciones" [tienePrestamo]="tienePrestamo"></app-home-movil>
+</div>

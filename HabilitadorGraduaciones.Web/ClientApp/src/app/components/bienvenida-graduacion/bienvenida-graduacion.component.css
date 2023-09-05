@@ -1,0 +1,16 @@
+::ng-deep .form-check .form-check-input {
+  float: none !important;
+  margin-left: -1.5em;
+}
+
+.bienvenidaGraduacionStyle {
+  width: 255px;
+  height: 39px;
+  left: 168px;
+  padding-top: 7px;
+}
+
+.aStyle {
+  color: black;
+  width: auto;
+}

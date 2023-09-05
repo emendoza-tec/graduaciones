@@ -1,0 +1,16 @@
+<div class="row d-flex text-center">
+    <div class="col">
+        <h1 mat-dialog-title>¿Estás seguro de que deseas salir sin guardar tus cambios?</h1>
+    </div>
+</div>
+<div mat-dialog-content>
+    <div class="row justify-content-end">
+        <div class="col-auto">
+            <button class="btn btn-cancel" (click)="cancelar()">Seguir editando</button>
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-primary" (click)="aceptar()">Salir sin guardar cambios</button>
+           
+        </div>
+    </div>
+</div>

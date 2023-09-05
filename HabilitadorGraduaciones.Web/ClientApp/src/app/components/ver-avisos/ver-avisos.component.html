@@ -1,0 +1,37 @@
+<app-nav-menu (dataupdateevent)="cambiarLenguaje($event)"></app-nav-menu>
+<div class="container container-outlet">
+  <div class="col-xs-12">
+    <div class="card card-graduacion mt-4">
+      <span>{{'verAvisos.tituloAvisos' | translate}}</span>
+    </div>
+  </div>
+
+  <div class="card cardPrincipal m-2 p-2">
+    <div class="container">
+      <div class="row" *ngFor="let aviso of avisos; let index = index">
+        <div class="offset-md-2 col-md-8 card mb-2 mt-2">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-8">
+                <h1 class="card-title" >{{aviso.titulo}}</h1>
+              </div>
+              <div class="col-4 float-end">
+                <h5 class="card-subtitle">{{aviso.fechaCreacion | date:'dd/MM/yyyy'}}</h5>
+              </div>
+            </div>  
+            <br> 
+            <div class="row">
+              <div class="card-text" [innerHTML]="aviso.texto"></div>
+            </div>
+            <div class="row div-img">
+              <div class="col img-card-aviso" *ngIf="aviso.urlImage != null">
+                <img class="img-aviso img-fluid" src="{{aviso.urlImage}}" alt="aviso" onerror="this.src='/assets/img/defaultAviso.png';">
+              </div>
+            </div>
+          </div>  
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>

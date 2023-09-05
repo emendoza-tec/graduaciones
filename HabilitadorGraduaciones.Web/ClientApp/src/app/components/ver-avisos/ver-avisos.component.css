@@ -1,0 +1,44 @@
+.card{
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+.card-title {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    letter-spacing: -0.0025em;
+    color: #000000;
+    padding-left: 0;
+    padding-right: 4rem;
+    display: contents;
+}
+
+.img-aviso{
+    max-width: 80%;
+    max-height: 100%; 
+    border-radius: 10px;
+    text-align: center;
+}
+
+
+.card-subtitle {
+    float: right;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: -0.0025em;
+    color: #707070;
+}
+
+.div-img{
+    text-align: center;
+}
+
+::ng-deep.card-text > ul > li{
+    list-style-type: disc;
+}
+
+::ng-deep.card-text > ol > li{
+    list-style-type: decimal;
+}

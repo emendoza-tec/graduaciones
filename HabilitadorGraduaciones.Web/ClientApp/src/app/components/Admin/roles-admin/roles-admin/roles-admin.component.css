@@ -1,0 +1,65 @@
+/*Estilos columnas roles*/
+.mat-column-descripcion {
+    width: 13%;
+    max-width: 50px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mat-column-totalUsuarios {
+    width: 0;
+}
+
+.mat-column-usuarioRegistro {
+    width: 15%;
+    max-width: 100px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mat-column-usuarioModifico {
+    width: 15%;
+    max-width: 100px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.right-inner-addon {
+    position: relative;
+}
+
+.right-inner-addon input {
+    padding-right: 35px !important;
+}
+
+.right-inner-addon i {
+    position: absolute;
+    right: 10px;
+    padding: 10px 10px;
+    pointer-events: none;
+}
+
+input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.spanEliminarModal {
+    color: #0053F1 !important;
+}
+
+.btn:focus-visible {
+    box-shadow: none;
+}
+
+.checkRolEstatus{
+    margin-right: 5px;
+}
+
+.iconSizeUsuariosAsignados {
+    font-size: 17px !important;
+    padding-left: 10px;
+  }

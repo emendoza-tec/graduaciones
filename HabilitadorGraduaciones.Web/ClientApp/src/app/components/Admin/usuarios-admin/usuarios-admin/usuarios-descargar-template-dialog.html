@@ -1,0 +1,69 @@
+<div class="container container-outlet">
+  <div class="row">
+    <div class="col-sm-12 d-flex text-center">
+      <h1 mat-dialog-title  style="flex: 1 1 auto; padding-top: 20px;"><strong>Carga por archivo de usuarios</strong></h1>
+      <i class="bi bi-x-lg cursorPointer" aria-hidden="true" (click)="cancelar()"></i>
+    </div>
+    <div class="col" style="padding-left: 1px !important; margin: 0 0 -8px 0 !important; ">
+      <p class="f15">
+        Para cargar por archivo deberá de seguir el siguiente formato. Una vez completo el documento,
+        deberá adjuntarse en la parte inferior.
+      </p>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div class="col-auto">
+      <a class="btn btn-descargar"
+         [href]="disableAction || isAnalizandoData ? 'javascript:void(0);' : archivoPlantillaUsu">
+        <i class="bi bi-download" aria-hidden="true"></i>
+        Descargar Template
+      </a>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <span class="f15">
+      Adjuntar archivo
+    </span>
+  </div>
+
+  <div mat-dialog-content>
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-5">
+      <div class="containerArchivo" appDnd (drop)="onFileDropped($event); resetEvent($event);">
+        <input type="file" #fileDropRef id="fileDropRef" (change)="fileBrowseHandler($event)"
+               class="cursorPointer inputArchivo"
+               (click)="resetEvent($event)" [disabled]="disableAction || isAnalizandoData" />
+        <i class="bi bi-upload" aria-hidden="true"></i>
+        <h3>Arrastre archivo en este espacio</h3>
+        <label for="fileDropRef" class="my-auto">Adjuntar archivo</label>
+      </div>
+      <br>
+    </div>
+    <div class="files-list" *ngIf="archivoUsuario">
+      <div class="single-file">
+        <div class="file-icon">
+          <i class="bi bi-paperclip" aria-hidden="true"></i>
+        </div>
+        <div class="info" >
+          <h4 class="name">
+            {{ archivoUsuario.name }}
+          </h4>
+          <p class="size">
+            {{ formatBytes(archivoUsuario.size) }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="errorCampus" class="text-center"><span class="text-danger">Existe algún campus incorrecto. Favor de revisar el template</span></div>
+    <div *ngIf="errorSede" class="text-center"><span class="text-danger">Existe alguna sede incorrecta. Favor de revisar el template</span></div>
+    <div *ngIf="errorNivel" class="text-center"><span class="text-danger">Existe algún nivel incorrecto. Favor de revisar el template</span></div>
+    <div *ngIf="errorRol" class="text-center"><span class="text-danger">Existe algún rol incorrecto. Favor de revisar el template</span></div>
+  </div>
+  <div class="row justify-content-end mt-2">
+    <div class="col-auto">
+      <button class="btn btn-cancel" (click)="cancelar()">Cancelar</button>
+    </div>
+    <div class="col-auto">
+      <button class="btn btn-primary" (click)="cargar()">Cargar</button>
+    </div>
+  </div>
+</div>

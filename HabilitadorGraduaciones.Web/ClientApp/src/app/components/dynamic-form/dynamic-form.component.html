@@ -1,0 +1,16 @@
+<div [formGroup]="form">
+
+    <div class="d-inline" >
+        <label class="label-form f16" [attr.for]="input.key">{{input.label}}</label>
+        <div  [ngSwitch]="input.controlType">
+
+            <input *ngSwitchCase="'textbox'" [formControlName]="input.key" [id]="input.key" [type]="input.type"
+                class="form-control">
+
+            <select [id]="input.key" *ngSwitchCase="'dropdown'" [formControlName]="input.key" class="form-control">
+                <option *ngFor="let opt of input.options" [value]="opt.key">{{opt.value}}</option>
+            </select>
+        </div>
+    </div>
+
+</div>

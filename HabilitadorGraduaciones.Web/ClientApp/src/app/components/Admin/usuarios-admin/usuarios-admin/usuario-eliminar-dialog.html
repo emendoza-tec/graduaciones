@@ -1,0 +1,15 @@
+<div class="row d-flex text-center">
+    <div class="col">
+        <h2 mat-dialog-title class="modal-text">¿Estás seguro de que deseas eliminar a "<span class="spanEliminarModal">{{data.usuario.nombre}}</span>" con (<span class="spanEliminarModal">{{data.usuario.cantidadRoles}}</span>) rol(es) asignados?</h2>
+    </div>
+</div>
+<div mat-dialog-content>
+    <div class="row justify-content-end">
+        <div class="col-auto">
+            <button class="btn btn-cancel" (click)="cancelar()">Cancelar</button>
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-primary" (click)="aceptar()">Eliminar usuario</button>
+        </div>
+    </div>
+</div>

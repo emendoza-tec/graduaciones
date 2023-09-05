@@ -1,0 +1,6 @@
+.verticalCenter{
+    align-items: center;
+}
+::ng-deep .mat-list-option:hover, .mat-list-option:focus, .mat-nav-list .mat-list-item:hover, .mat-nav-list .mat-list-item:focus, .mat-action-list .mat-list-item:hover, .mat-action-list .mat-list-item:focus {
+    background: rgba(99, 104, 231, 0.18);
+}

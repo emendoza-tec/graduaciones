@@ -1,0 +1,51 @@
+<app-header-admin [titulo]=titulo [breadCumbs]="'Nivel de Ingles /'"></app-header-admin>
+
+  <div class="container">
+    <div class="container-fluid">
+      <mat-form-field appearance="standard">
+
+        <mat-label>Programa</mat-label>
+
+        <input matInput (keyup)="applyFilter($event)" placeholder="Programa" name="filtrado" #input autocapitalize="off" />
+
+      </mat-form-field>
+        <div>
+      </div>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z2" aria-describedby="Programa">
+          <ng-container matColumnDef="Programa">
+            <th mat-header-cell *matHeaderCellDef> Programa </th>
+            <td mat-cell *matCellDef="let element">{{element.nombrePrograma}}  </td>
+          </ng-container>
+
+          <ng-container matColumnDef="B2">
+            <th mat-header-cell *matHeaderCellDef> B2 </th>
+            <td mat-cell input *matCellDef="let element"><input type="radio" [disabled]="!permisoEditar" value="4" [id]="'B2'+element.nombrePrograma" [name]="'radio' + element.nombrePrograma"></td>
+          </ng-container>
+
+          <ng-container matColumnDef="C1">
+            <th mat-header-cell *matHeaderCellDef> C1 </th>
+            <td mat-cell input *matCellDef="let element"><input type="radio" [disabled]="!permisoEditar" [id]="'C1'+element.nombrePrograma" value="5" [name]="'radio' + element.nombrePrograma"></td>
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        
+        <div class="row d-flex justify-content-end">
+          <div class="col-auto pb-2">
+            <button (click)="configInglesPrograma()" class="btn btn-primary" [disabled]="!permisoEditar" >Actualizar</button>
+          </div>
+        </div>
+        
+        
+  </div>
+  
+  
+</div>
+<ngx-spinner
+bdColor = "rgba(51, 51, 51, 0.8)"
+size = "large"
+color = "#934d4d">
+<p style="color: white" > Por favor espere... </p>
+</ngx-spinner>

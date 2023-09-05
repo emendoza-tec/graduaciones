@@ -1,0 +1,7 @@
+.fechaComentario {
+    font-style: italic;
+    color: #A2A2A2;
+    text-align-last: right;
+    margin-right: 0;
+    text-transform: lowercase;
+}

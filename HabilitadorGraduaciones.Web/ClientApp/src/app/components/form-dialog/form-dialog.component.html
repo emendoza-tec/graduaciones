@@ -1,0 +1,370 @@
+<div *ngIf="data.formType == 'Usuario'" style="padding:10px 30px;">
+  <em *ngIf="step > 1 && step != 3 && step !=5" class="bi bi-arrow-left float-start" (click)="regresar()"
+    style="color: #707070; font-size:18px;margin-right: 15px;cursor: pointer;"></em>
+  <em *ngIf="step == 1" class="bi bi-arrow-left float-start" (click)="regresoEditarDatosPersonales()"
+    style="color: #707070; font-size:18px;margin-right: 15px;cursor: pointer;"></em>
+  <div [ngSwitch]="step">
+    <ng-template [ngSwitchCase]="'1'">
+      <span class="text-center f30 bold col-12 mb-4">{{data.titulo}}</span>
+      <div *ngIf="isCargandoArrays" style="height: 100px;">
+        <ngx-spinner bdColor="rgba(0,0,0,0.1);" color="#000000" type="ball-clip-rotate" size="default"
+          [fullScreen]="false"></ngx-spinner>
+      </div>
+      <br>
+      <br>
+      <p>{{'modalSolicitudesEdicion.mensaje' | translate}}</p>
+      <p>{{'modalSolicitudesEdicion.nota' | translate}}</p>
+      <form (ngSubmit)="onSubmitDatosPersonales()" [formGroup]="form" *ngIf="!isCargandoArrays">
+        <div class="row">
+          <br />
+          <div class="form-group">
+            <label for="nombre" style="padding-left: 0px;"
+              class="textAzul">{{'modalSolicitudesEdicion.labelsForm.nombre' | translate}}</label>
+            <input class="form-control" autocomplete="off" formControlName="nombre" id="nombre"
+              aria-describedby="nombre">
+            <div class="container cursorPointer" appDnd *ngIf="nombre?.dirty">
+              <input type="file" id="aNombre" formControlName="aNombre" (change)="fileBrowseHandler($event, -1)"
+                class="cursorPointer inputFile" />
+              <div class="cursorPointer">
+                <i class="bi bi-paperclip cursorPointer" aria-hidden="true"></i>
+                <small id="nombre"
+                  class="form-text text-muted cursorPointer">{{'modalSolicitudesEdicion.adjuntarArchivo' |
+                  translate}}</small>
+              </div>
+            </div>
+            <div *ngIf="aNombre">
+              <div class="files-list">
+                <div class="single-file row my-auto">
+                  <h4 class="name col-sm-6 col-md-6">
+                    {{ aNombre.name }}
+                  </h4>
+
+                  <p class="size col-auto my-auto">
+                    ({{ formatBytes(aNombre.size) }})
+                  </p>
+
+                  <div id="aNombre" class="delete col-auto my-auto" (click)="deleteFile($event, -1)">
+                    <i id="aNombre" class="bi bi-x-lg" style="color: #707070;"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="form-group">
+            <label for="curp" style="padding-left: 0px;" class="textAzul">{{'modalSolicitudesEdicion.labelsForm.CURP' |
+              translate}}</label>
+            <input class="form-control" autocomplete="off" formControlName="curp" id="curp" aria-describedby="curp">
+            <div class="container cursorPointer" appDnd *ngIf="curp?.dirty">
+              <input type="file" id="aCurp" formControlName="aCurp" (change)="fileBrowseHandler($event, -1)"
+                class="cursorPointer inputFile" />
+              <div class="cursorPointer">
+                <i class="bi bi-paperclip cursorPointer" aria-hidden="true"></i>
+                <small id="aCurp" class="form-text text-muted cursorPointer">{{'modalSolicitudesEdicion.adjuntarArchivo'
+                  | translate}}</small>
+              </div>
+            </div>
+            <div *ngIf="aCurp">
+              <div class="files-list">
+                <div class="single-file row align-items-end">
+                  <h4 class="name col-sm-6 col-md-6">
+                    {{ aCurp.name }}
+                  </h4>
+
+                  <p class="size col-auto my-auto">
+                    ({{ formatBytes(aCurp.size) }})
+                  </p>
+
+                  <div id="aCurp" class="delete col-auto my-auto" (click)="deleteFile($event, -1)">
+                    <i id="aCurp" class="bi bi-x-lg" style="color: #707070;"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="programaAcademico" style="padding-left: 0px;"
+              class="textAzul">{{'modalSolicitudesEdicion.labelsForm.programaAcademico' | translate}}</label>
+            <input class="form-control" autocomplete="off" formControlName="programaAcademico" id="programaAcademico"
+              aria-describedby=" programaAcademico">
+            <div class="container cursorPointer" appDnd *ngIf="programaAcademico?.dirty">
+              <input type="file" id="aProgramaAcademico" formControlName="aProgramaAcademico"
+                (change)="fileBrowseHandler($event, -1)" class="cursorPointer inputFile" />
+              <div class="cursorPointer">
+                <i class="bi bi-paperclip cursorPointer" aria-hidden="true"></i>
+                <small id="aProgramaAcademico"
+                  class="form-text text-muted cursorPointer">{{'modalSolicitudesEdicion.adjuntarArchivo' |
+                  translate}}</small>
+              </div>
+            </div>
+            <div *ngIf="aProgramaAcademico">
+              <div class="files-list">
+                <div class="single-file row align-items-end">
+                  <h4 class="name col-sm-6 col-md-6">
+                    {{ aProgramaAcademico.name }}
+                  </h4>
+
+                  <p class="size col-auto my-auto">
+                    ({{ formatBytes(aProgramaAcademico.size) }})
+                  </p>
+
+                  <div id="aProgramaAcademico" class="delete col-auto my-auto" (click)="deleteFile($event, -1)">
+                    <i id="aProgramaAcademico" class="bi bi-x-lg" style="color: #707070;"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div formArrayName="concentraciones">
+            <div *ngFor="let c of concentraciones.controls; let i=index">
+              <div [formGroupName]="i">
+                <label for="nombreArray" style="padding-left: 0px;"
+                  class="textAzul">{{'modalSolicitudesEdicion.labelsForm.concentracion' | translate}}</label>
+                <input class="form-control" autocomplete="off" formControlName="nombreArray" id="nombre"
+                  aria-describedby="nombre" (change)="cambiaARequerido('concentracionesArray',i)">
+                <div class="container cursorPointer" appDnd *ngIf="c?.dirty">
+                  <input type="file" id="aNombreArray" formControlName="aNombreArray"
+                    (change)="fileBrowseHandler($event, i, 'concentracionesArray')" class="cursorPointer inputFile" />
+                  <div class="cursorPointer">
+                    <i class="bi bi-paperclip cursorPointer" aria-hidden="true"></i>
+                    <small id="aNombre"
+                      class="form-text text-muted cursorPointer">{{'modalSolicitudesEdicion.adjuntarArchivo' |
+                      translate}}</small>
+                  </div>
+                </div>
+                <div *ngIf="aConcentraciones.length > 0 && aConcentraciones[i].isLoadFile">
+                  <div class="files-list">
+                    <div class="single-file row align-items-end">
+                      <h4 class="name col-sm-6 col-md-6">
+                        {{ aConcentraciones[i].file.name}}
+                      </h4>
+
+                      <p class="size col-auto my-auto">
+                        ({{ aConcentraciones[i].file.size }})
+                      </p>
+
+                      <div id="aNombreArray" class="delete col-auto my-auto"
+                        (click)="deleteFile($event, i, 'concentracionesArray')">
+                        <i id="aNombreArray" class="bi bi-x-lg" style="color: #707070;"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+          </div>
+          <div class="row justify-content-end">
+            <div class="col-auto cursorPointer textAzul" (click)="agregarDiploma()" style="padding-top: 10px;"
+              *ngIf="isDiplomasCargados">
+              {{'modalSolicitudesEdicion.labelsForm.agregarDiploma' | translate}}
+            </div>
+            <div class="col-auto cursorPointer textAzul" style="padding-top: 10px; color: rgba(221, 221, 221, .80);"
+              *ngIf="!isDiplomasCargados">
+              {{'modalSolicitudesEdicion.labelsForm.agregarDiploma' | translate}}
+            </div>
+          </div>
+          <div formArrayName="diplomasAcademicos">
+            <div *ngFor="let d of diplomasAcademicos.controls; let i=index">
+              <div [formGroupName]="i">
+                <label for="nombreArray" style="padding-left: 0px;"
+                  class="textAzul">{{'modalSolicitudesEdicion.labelsForm.diploma' | translate}}</label>
+                <input class="form-control" autocomplete="off" formControlName="nombreArray" id="nombreArray"
+                  aria-describedby="nombreArray" (change)="cambiaARequerido('diplomasArray',i)"
+                  (keyup)="validaDiplomas()">
+                <div class="container cursorPointer" appDnd *ngIf="d?.dirty">
+                  <input type="file" id="aNombreArray" formControlName="aNombreArray"
+                    (change)="fileBrowseHandler($event, i, 'diplomasArray')" class="cursorPointer inputFile" />
+                  <div class="cursorPointer">
+                    <i class="bi bi-paperclip cursorPointer" aria-hidden="true"></i>
+                    <small id="aNombre"
+                      class="form-text text-muted cursorPointer">{{'modalSolicitudesEdicion.adjuntarArchivo' |
+                      translate}}</small>
+                  </div>
+                </div>
+                <div
+                  *ngIf="aDiplomasAcademicos.length > 0 && aDiplomasAcademicos[i].isLoadFile && aDiplomasAcademicos[i].isLoadFile !== undefined">
+                  <div class="files-list">
+                    <div class="single-file row align-items-end">
+                      <h4 class="name col-sm-6 col-md-6">
+                        {{ aDiplomasAcademicos[i].file.name }}
+                      </h4>
+
+                      <p class="size col-auto my-auto">
+                        ({{ aDiplomasAcademicos[i].file.size }})
+                      </p>
+
+                      <div id="aNombreArray" class="delete col-auto my-auto"
+                        (click)="deleteFile($event, i, 'diplomasArray')">
+                        <i id="aNombreArray" class="bi bi-x-lg" style="color: #707070;"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row text-end" style="padding-top:15px;">
+            <div class="col-sm-4 offset-8">
+              <button type="submit" class="btn btn-purple fullWidth" [disabled]="deshabilitaDatosPersonales()">
+                {{'modalSolicitudesEdicion.btnguardar' | translate}}</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'2'">
+      <div class="row">
+        <span class="text-center f30 bold col-12 mb-4"><em class="bi bi-check-circle" style="color:#00C851"></em>
+          {{'modalResumenSolicitud.titulo' | translate}} </span>
+      </div>
+
+      <div class="row">
+        {{'modalResumenSolicitud.mensaje' | translate}}
+      </div>
+      <br />
+      <div class="row">
+        <h3 style="margin-bottom:0px;"><strong>{{'modalResumenSolicitud.cambiosSolicitados' | translate}}</strong></h3>
+      </div>
+      <br />
+      <div class="row">
+        <div class="card cursorPointer" style="border: 2px solid #0053F1;" *ngIf="nLsSolicitud">
+          <div class="card-body" style="padding-top: 5px;">
+            <h3 class="titulos"><strong>{{'modalResumenSolicitud.informacion' | translate}}</strong></h3>
+            <div *ngFor="let nS of nLsSolicitud">
+              <container-element [ngSwitch]="nS.IdDatosPersonales">
+                <some-element *ngSwitchCase="1" class="parent">
+                  <strong class="child">{{'modalSolicitudesEdicion.labelsForm.nombre' | translate}}</strong>
+                  <div class="child">{{nS.DatoIncorrecto}}</div>
+                </some-element>
+                <some-element *ngSwitchCase="2" class="parent">
+                  <strong class="child">{{'modalSolicitudesEdicion.labelsForm.CURP' | translate}}</strong>
+                  <div class="child">{{nS.DatoIncorrecto}}</div>
+                </some-element>
+                <some-element *ngSwitchCase="3" class="parent">
+                  <strong class="child">{{'modalSolicitudesEdicion.labelsForm.programaAcademico' | translate}}</strong>
+                  <div class="child">{{nS.DatoIncorrecto}}</div>
+                </some-element>
+                <some-element *ngSwitchCase="4" class="parent">
+                  <strong class="child">{{'modalSolicitudesEdicion.labelsForm.concentracion' | translate}}</strong>
+                  <div class="child">{{nS.DatoIncorrecto}}</div>
+                </some-element>
+                <some-other-element *ngSwitchCase="5" class="parent">
+                  <strong class="child">{{'modalSolicitudesEdicion.labelsForm.diploma' | translate}}s</strong>
+                  <div class="child">{{nS.DatoIncorrecto}}</div>
+                </some-other-element>
+              </container-element>
+            </div>
+          </div>
+          <div class="card-body" style="padding-top: 0px;">
+            <h3 class="titulos"><strong>{{'modalResumenSolicitud.cambiosSolicitados' | translate}}</strong></h3>
+            <div *ngFor="let nS of nLsSolicitud">
+              <container-element [ngSwitch]="nS.IdDatosPersonales">
+                <some-element *ngSwitchCase="1" class="parent">
+                  <strong class="child">{{'modalSolicitudesEdicion.labelsForm.nombre' | translate}}</strong>
+                  <div class="child">{{nS.DatoCorrecto}}</div>
+                </some-element>
+                <some-element *ngSwitchCase="2" class="parent">
+                  <strong class="child">{{'modalSolicitudesEdicion.labelsForm.CURP' | translate}}</strong>
+                  <div class="child">{{nS.DatoCorrecto}}</div>
+                </some-element>
+                <some-element *ngSwitchCase="3" class="parent">
+                  <strong class="child">{{'modalSolicitudesEdicion.labelsForm.programaAcademico' | translate}}</strong>
+                  <div class="child">{{nS.DatoCorrecto}}</div>
+                </some-element>
+                <some-element *ngSwitchCase="4" class="parent">
+                  <strong class="child">{{'modalSolicitudesEdicion.labelsForm.concentracion' | translate}}</strong>
+                  <div class="child">{{nS.DatoCorrecto}}</div>
+                </some-element>
+                <some-other-element *ngSwitchCase="5" class="parent">
+                  <strong class="child">{{'modalSolicitudesEdicion.labelsForm.diploma' | translate}}s</strong>
+                  <div class="child">{{nS.DatoCorrecto}}</div>
+                </some-other-element>
+              </container-element>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="form-row text-end" style="padding-top: 15px;">
+        <button type="submit" class="btn btn-purple" cdkFocusInitial (click)="guardarSolicitudes();"
+          style="width: 40%;">{{'modalResumenSolicitud.btnConfirmar' | translate}}</button>
+      </div>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'3'">
+      <div *ngIf="isGuardandoDatos" style="height: 100px;">
+        <ngx-spinner bdColor="rgba(0,0,0,0.1);" color="#000000" type="ball-clip-rotate" size="default"
+          [fullScreen]="false"></ngx-spinner>
+      </div>
+      <div *ngIf="!isGuardandoDatos">
+        <div class="row">
+          <span class="text-center f30 bold col-12 mb-4"><em class="bi bi-check-circle "
+              style="font-size:50px; color:#00C851"></em></span>
+        </div>
+        <div class="row">
+          <span class="text-center f30 bold col-12 mb-4"
+            style="line-height:normal;">{{'modalResumenSolicitud.solicitudExitosa' | translate}}</span>
+        </div>
+        <p>{{'modalResumenSolicitud.texto1' | translate}}</p>
+        <p>{{'modalResumenSolicitud.texto2' | translate}}</p>
+
+        <div class="float-left position-absolute cursor-pointer mt-4">
+          <a class="f16b" style="text-decoration-line: underline;color:#000;" [href]="miTec"
+            target="_blank">{{'modalResumenSolicitud.editar' | translate}}</a>
+        </div>
+        <div class="form-row text-end" style="padding-top:15px;">
+          <button type="submit" class="btn btn-purple" cdkFocusInitial (click)="aceptarSolicitudesGuardadas();"
+            style="width: 40%;">{{'modalResumenSolicitud.btnAceptar' | translate}}</button>
+        </div>
+      </div>
+
+    </ng-template>
+    <ng-template [ngSwitchCase]="'4'">
+      <div class="row center-text">
+        <span class="text-center f30 bold col-12 mb-4"><em class="bi bi-check-circle " style="color:#00C851"></em>
+          {{'confirmDialog.graciasValidacion' | translate}} </span>
+      </div>
+      <br />
+      <label style="padding-left: 0px;">{{'confirmDialog.mensajeCampus' | translate}}</label>
+      <br />
+      <br />
+      <div class="row">
+        <div class="col-auto" style="padding-left: 10px; padding-right:10px"><em class="bi bi-exclamation-octagon-fill"
+            style="color: #EA337D;"></em></div>
+        <div class="col">
+          <label style="padding-left: 0px;">{{'confirmDialog.articulo6.2' | translate}}</label>
+        </div>
+      </div>
+      <br />
+      <label>{{'confirmDialog.selectCampus' | translate}}</label>
+      <select class="form-select" aria-label="Default select example" [(ngModel)]="selectedCampus">
+        <option selected>{{'confirmDialog.seleccionaCampus' | translate}}</option>
+        <option *ngFor="let campus of filtroCampus" [value]="campus.clave">{{campus.descripcion}}</option>
+      </select>
+      <div class="form-row text-end" style="padding-top:15px;">
+        <button type="submit" class="btn btn-purple" cdkFocusInitial (click)="guardarCampusSeleccionado();"
+          style="width: 60%;">{{'confirmDialog.btnConfirmarCampus' | translate}}</button>
+      </div>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'5'">
+      <div class="row">
+        <span class="text-center f30 bold col-12 mb-4"><em class="bi bi-check-circle bi-50"
+            style='color:#00C851; font-size:50px;'></em></span>
+      </div>
+      <div class="row center-text">
+        <span class="text-center f30 bold col-12 mb-4" style="line-height:normal;">
+          {{'confirmDialog.validacionCorrecta' | translate}}
+        </span>
+      </div>
+      <div class="row center-text">
+        <label class="text-center">{{'confirmDialog.correoConfirmacion' | translate}}</label>
+      </div>
+      <br />
+      <div class="form-row text-end" style="padding-top: 15px;">
+        <button type="submit" class="btn btn-purple" cdkFocusInitial (click)="finalizar();">{{'confirmDialog.btnAceptar'
+          | translate}}</button>
+      </div>
+    </ng-template>
+  </div>
+</div>

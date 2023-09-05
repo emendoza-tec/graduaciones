@@ -1,0 +1,38 @@
+<div class="row d-flex justify-content-center cursorPointer logoMenu" (click)="toggleSideNav()">
+  <div class="col-auto"><img alt="Habilitador" src="/assets/svg/habilitador-admin.svg" width="50" height="50"></div>
+  <div class="col-auto vertical-center" *ngIf="this.sideNavService.getToggleValue">
+    <h2>Graduación</h2>
+  </div>
+</div>
+<ul class="side-menu">
+  <li class="menuPrincipal" *ngFor="let menu of ListaMenu; index as i">
+    <a *ngIf="menu.path !== 'Auth/Logout' && (menu.ver || menu.editar)"
+      [ngClass]="this.sideNavService.getToggleValue ? 'side-menu__item' : 'side-menu__item_closed'"
+      [routerLink]="menu.path === '' ? null : [menu.path]" routerLinkActive="active"
+      (click)="showSubMenu===i ? showSubMenu=-1: showSubMenu=i">
+      <i class="bi {{menu.icono}}" aria-hidden="true"></i>
+      <span class="side-menu__label" *ngIf="this.sideNavService.getToggleValue">{{menu.nombre}}</span>
+      <span class="spacer"></span>
+      <i class="bi bi-chevron-up iconArrow" aria-hidden="true"
+        *ngIf="this.sideNavService.getToggleValue && menu.path === '' && showSubMenu===i"></i>
+      <i class="bi bi-chevron-down iconArrow" aria-hidden="true"
+        *ngIf="this.sideNavService.getToggleValue && menu.path === '' && showSubMenu!==i"></i>
+    </a>
+    <a [ngClass]="this.sideNavService.getToggleValue ? 'side-menu__item' : 'side-menu__item_closed'"
+      *ngIf="menu.path === 'Auth/Logout' && (menu.ver || menu.editar)" routerLinkActive="active"
+      (click)="showSubMenu===i ? showSubMenu=-1: showSubMenu=i; aService.cerrarSesion()">
+      <i class="bi {{menu.icono}}" aria-hidden="true"></i>
+      <span class="side-menu__label" *ngIf="this.sideNavService.getToggleValue">{{menu.nombre}}</span>
+      <span class="spacer"></span>
+    </a>
+    <ul [class.ul__subMenu_closed]="!this.sideNavService.getToggleValue" *ngIf="showSubMenu===i">
+      <li *ngFor="let menuHijo of menu.menuHijo">
+        <a *ngIf="menu.ver || menu.editar" [ngClass]="this.sideNavService.getToggleValue ? 'side-menu__itemHijo' : 'side-menu__itemHijo_closed'"
+          [routerLink]="menuHijo.path === '' ? null : [menuHijo.path]" routerLinkActive="active">
+          <i class="bi {{menuHijo.icono}}" aria-hidden="true"></i>
+          <span class="side-menu__label" *ngIf="this.sideNavService.getToggleValue">{{menuHijo.nombre}}</span>
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>

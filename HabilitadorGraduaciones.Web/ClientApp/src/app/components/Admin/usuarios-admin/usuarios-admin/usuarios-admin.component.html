@@ -1,0 +1,139 @@
+<div class="ParentAdmin container-fluid">
+  <div class="p-2" style="text-align: right">
+    <button type="button" class="btn btnExportLoad" (click)="exportarExcelUsuarios()">
+      <i class="bi bi-download"></i> Exportar</button>
+    <button type="button" class="btn btnExportLoad" (click)="cargarExcelUsuarios()">
+    <i class="bi bi-upload"></i> Carga por archivo</button>
+    <button class="btn btnAgregarUsuario" type="submit" routerLink="../nuevo" [disabled]="!permisoEditar">
+      <i class="bi bi-plus"></i> Agregar usuario</button>
+  </div>
+
+  <div class="container text-center m-0">
+    <div class="row">
+      <div class="col-4 right-inner-addon buscar">
+        <i class="bi bi-search bi-text-end" aria-hidden="true"></i>
+        <input #input type="text" class="form-control" placeholder="Buscar" [formControl]="searchForm" name="searchForm"
+          (keyup)="filtroUsuarios($event)" />
+      </div>
+      <div class="col-3 rol">
+        <mat-form-field [floatLabel]="'never'" name="labelRol">
+          <mat-label class="f16">Filtrar por Rol</mat-label>
+          <mat-select [formControl]="rolesForm" name="rolesForm" [multiple]="true" #multiSelect
+            class="form-select selects !important" (openedChange)="onOpenChangeRoles(multiRolesSearch)">
+            <mat-select-trigger> {{rolesForm.value }} </mat-select-trigger>
+            <mat-option #multiRolesSearch matInput (input)="onInputChangeRoles($event)">
+              <ngx-mat-select-search placeholderLabel="Buscar Rol"
+                noEntriesFoundLabel="No se encontraron resultados"></ngx-mat-select-search>
+            </mat-option>
+            <mat-option *ngFor="let filtroRoles of rolesFiltrados" [value]="filtroRoles.descripcion"
+              (click)="filtroMultiRol()">
+              {{filtroRoles.descripcion}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-3 campus">
+        <mat-form-field [floatLabel]="'never'" name="labelCampus">
+          <mat-label name="labelCampus" class="f16">Filtrar por Campus</mat-label>
+          <mat-select [formControl]="campusForm" name="campusForm" [multiple]="true" #multiSelect
+            class="form-select selects !important" (openedChange)="onOpenChangeCampus(multiCampusSearch)">
+            <mat-select-trigger> {{campusForm.value }} </mat-select-trigger>
+            <mat-option #multiCampusSearch matInput (input)="onInputChangeCampus($event)">
+              <ngx-mat-select-search placeholderLabel="Buscar Campus"
+                noEntriesFoundLabel="No se encontraron resultados"></ngx-mat-select-search>
+            </mat-option>
+            <mat-option *ngFor="let filtroCampus of campusFiltrados" [value]="filtroCampus.descripcion"
+              (click)="filtroMultiCampus()">
+              {{filtroCampus.descripcion}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center" *ngIf="isLoading">
+    <ngx-spinner *ngIf="isLoading" bdColor="rgba(0,0,0,0.1);" size="medium" color="#000000" type="ball-clip-rotate"
+        size="default" [fullScreen]="false">
+        Cargando usuarios...
+    </ngx-spinner>
+</div>
+  <div *ngIf="dataSourceUsuarios.data.length > 0" class="dTable mt-1">
+    <table mat-table [dataSource]="dataSourceUsuarios" aria-describedby="Usuarios" matSort
+      (matSortChange)="sortChange($event)">
+
+      <!-- Nómina Column -->
+      <ng-container matColumnDef="nomina">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nómina </th>
+        <td mat-cell *matCellDef="let row" [ngStyle]="{'font-weight': row.nuevo  ? 'bold': 'normal'}"> {{row.nomina}}
+        </td>
+      </ng-container>
+
+      <!-- Nombre Column -->
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+        <td mat-cell *matCellDef="let row" [ngStyle]="{'font-weight': row.nuevo  ? 'bold': 'normal'}"
+          [matTooltip]="row.nombre" matTooltipPosition="above"> {{row.nombre}}
+        </td>
+      </ng-container>
+
+      <!-- Correo Column -->
+      <ng-container matColumnDef="correo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Correo </th>
+        <td mat-cell *matCellDef="let row" [ngStyle]="{'font-weight': row.nuevo  ? 'bold': 'normal'}"
+          [matTooltip]="row.correo" matTooltipPosition="above">
+          <u>{{row.correo}}</u>
+        </td>
+      </ng-container>
+
+      <!-- Campus Column -->
+      <ng-container matColumnDef="campus">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Campus </th>
+        <td mat-cell *matCellDef="let row" [ngStyle]="{'font-weight': row.nuevo  ? 'bold': 'normal'}"
+          [matTooltip]="row.campus" matTooltipPosition="above"> {{row.campus}}
+        </td>
+      </ng-container>
+
+      <!-- Roles Column -->
+      <ng-container matColumnDef="rol">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header > Roles </th>
+        <td mat-cell *matCellDef="let row" [ngStyle]="{'font-weight': row.nuevo  ? 'bold': 'normal'}"
+          [matTooltip]="row.rol" matTooltipPosition="above"> {{row.rol}} </td>
+      </ng-container>
+
+      <!-- Acciones Column -->
+      <ng-container matColumnDef="acciones" class="d-flex justify-content-center">
+        <th mat-header-cell *matHeaderCellDef class="text-center">Acciones</th>
+        <td mat-cell *matCellDef="let row;" class="tableTextCenter">
+          <a class="pointer icon-primary cursorPointer" matTooltip="Editar" matTooltipPosition="above" *ngIf="permisoEditar" >
+            <i class="bi bi-pencil-square iconSize" [routerLink]="['../editar', row.idUsuario]"></i>
+          </a>
+          <a class="pointer icon-primary cursorPointer" matTooltip="Acceso restringido" matTooltipPosition="above" *ngIf="!permisoEditar" >
+            <i class="bi bi-eye-slash iconSize"></i>
+          </a>
+          <a class="pointer icon-primary cursorPointer" matTooltip="Eliminar" matTooltipPosition="above" *ngIf="permisoEditar">
+            <i class="bi bi-trash iconSize" (click)="eliminarUsuario(row)"> {{ row.acciones }}</i>
+          </a>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- Se muestra cuando no hay datos -->
+      <div *ngIf="hasData">
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="6">No hay datos que coincidan con: "{{input.value}}"</td>
+        </tr>
+      </div>
+      <div *ngIf="!hasData">
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="6">No hay Usuarios</td>
+        </tr>
+      </div>
+    </table>
+  </div>
+  <div *ngIf="dataSourceUsuarios.data.length > 0">
+    <mat-paginator paginator [length]="dataSourceUsuarios.data.length" showFirstLastButtons>
+    </mat-paginator>
+  </div>
+</div>

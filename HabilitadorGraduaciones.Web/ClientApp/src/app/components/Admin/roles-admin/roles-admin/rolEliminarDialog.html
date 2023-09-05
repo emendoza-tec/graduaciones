@@ -1,0 +1,71 @@
+<div *ngIf="hasUsuariosUnRol">
+    <div class="row d-flex text-center">
+        <div class="col">
+            <h1 mat-dialog-title>No se puede {{data.isEliminar ? 'eliminar' : 'deshabilitar'}} el rol
+                "<span class="spanEliminarModal">{{data.rol.descripcion}}</span>"
+            </h1>
+        </div>
+    </div>
+    <div class="row d-flex">
+        <div class="col">
+            <h3 mat-dialog-subtitle>Los usuarios no pueden quedar sin rol, asigna un rol adicional para poder {{data.isEliminar ? 'eliminar' : 'deshabilitar'}} el rol.
+            </h3>
+            <div class="row" *ngFor="let usuario of usuariosUnRol">
+                <strong class="col-auto child">{{usuario.numeroNomina}}</strong>
+                <div class="col child">{{usuario.nombre}}</div>
+            </div>
+        </div>
+    </div>
+    <div mat-dialog-content>
+        <div class="row justify-content-end">
+            <div class="col-auto">
+                <button class="btn btn-primary" (click)="cancelar();">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="!hasUsuariosUnRol">
+    <div [ngSwitch]="data.isEliminar">
+        <ng-template [ngSwitchCase]="true">
+            <div class="row d-flex text-center">
+                <div class="col">
+                    <h1 mat-dialog-title>¿Estás seguro de que deseas eliminar el rol "
+                        <span class="spanEliminarModal">{{data.rol.descripcion}}</span>" con (
+                        <span class="spanEliminarModal">{{data.rol.totalUsuarios}}</span>) usuario(s) asignados?
+                    </h1>
+                </div>
+            </div>
+            <div mat-dialog-content>
+                <div class="row justify-content-end">
+                    <div class="col-auto">
+                        <button class="btn btn-cancel" (click)="cancelar()">Cancelar</button>
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-primary" (click)="aceptar()">Eliminar rol</button>
+
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template [ngSwitchCase]="false">
+            <div class="row d-flex text-center">
+                <div class="col">
+                    <h1 mat-dialog-title>¿Estás seguro de que deseas {{data.valueCheck ? 'habilitar' : 'deshabilitar'}} el rol "
+                        <span class="spanEliminarModal">{{data.rol.descripcion}}</span>" con (
+                        <span class="spanEliminarModal">{{data.rol.totalUsuarios}}</span>) usuario(s) asignados?
+                    </h1>
+                </div>
+            </div>
+            <div mat-dialog-content>
+                <div class="row justify-content-end">
+                    <div class="col-auto">
+                        <button class="btn btn-cancel" (click)="cancelar()">Cancelar</button>
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-primary" (click)="aceptar()">{{data.valueCheck ? 'Habilitar' : 'Deshabilitar'}}  rol</button>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+</div>

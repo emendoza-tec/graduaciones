@@ -1,0 +1,139 @@
+<div class="container-fluid">
+    <div class="row d-flex align-items-end">
+        <div class=" right-inner-addon col-xl-4 col-lg-4 col-md-4 col-sm-4">
+            <form [formGroup]="form">
+                <small style="font-size: small" [ngClass]="{'errorValidacion': rol!.errors?.rolExistente}">Nombre de
+                    rol</small>
+                <input #input id="rol" name="rol" formControlName="rol" type="text" class="form-control inputRol"
+                    placeholder="Nombre de Rol" [ngClass]="{'errorInputRolValidacion': rol!.errors?.rolExistente}"
+                    (keyup)="checkDisable();" />
+            </form>
+        </div>
+        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 d-flex">
+            <input class="form-check-input checkBoxExpand" type="checkbox" [(ngModel)]="allRowsExpanded"
+                (click)="toggle()" aria-label="checkboxExpandir" id="checkboxExpandir">
+            <label class="form-check-label" for="flexCheckChecked">
+                {{allRowsExpanded ? 'Colapsar todos' : 'Expandir todos'}}
+            </label>
+        </div>
+        <div class="col-sm-6">
+            <div [ngSwitch]="isVer">
+                <ng-template [ngSwitchCase]="false">
+                    <div class="row d-flex justify-content-end">
+                        <div class="col-auto">
+                            <button class="btn btn-primary" (click)="cancelarRol()">Cancelar</button>
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn btn-primary guardaModificaRol" (click)="guardaRol()" [disabled]="disableGuardar">
+                                {{!isLoading ? 'Guardar Cambios' : ''}}
+                                <div class="row d-flex justify-content-center ngxSpinner" *ngIf="isLoading">
+                                    <ngx-spinner bdColor = "rgba(0,0,0,0.1)" size = "small" color = "#FFFFFF" type = "ball-clip-rotate" [fullScreen] = "false"></ngx-spinner>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template [ngSwitchCase]="true">
+                    <div class="row d-flex justify-content-end">
+                        <div class="col-auto">
+                            <button class="btn btn-primary" (click)="cancelarRol()">Regresar</button>
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn btn-primary" (click)="editarRol()">Editar</button>
+                        </div>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+    <div>
+        <small style="font-size: small" *ngIf="rol!.errors?.rolExistente"
+            [ngClass]="{'errorValidacion': rol!.errors?.rolExistente}">
+            Rol existente
+        </small>
+        <small style="font-size: small" *ngIf="rol!.invalid && !rol!.errors?.rolExistente && rol!.touched"
+            [ngClass]="{'errorValidacion': rol!.invalid}">
+            Rol inválido
+        </small>
+    </div>
+    <br>
+    <table mat-table [dataSource]="dataSeccionesPermisos" multiTemplateDataRows matSort class="tableSecciones"
+        aria-describedby="Secciones">
+        <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns">
+            <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+            <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+        </ng-container>
+        <ng-container matColumnDef="expand">
+            <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+            <td mat-cell *matCellDef="let element" class="d-flex justify-content-end expandTable">
+                <button mat-icon-button aria-label="expand row"
+                    (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation();">
+                    <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
+                    <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length"
+                style="padding: 0">
+                <div class="example-element-detail"
+                    [@detailExpand]="(element == expandedElement || allRowsExpanded) ? 'expanded' : 'collapsed'">
+                    <table mat-table [dataSource]="element.seccionesHijos" matSort class="tableHijosSecciones"
+                        aria-describedby="PermisosSecciones">
+
+                        <ng-container matColumnDef="menu">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Rol</th>
+                            <td mat-cell *matCellDef="let row">
+                                <div *ngIf="!row.nombreSubMenu">{{ row.nombreMenu }}</div>
+                                <div *ngIf="row.nombreSubMenu">{{ row.nombreSubMenu }}</div>
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="ver">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ver</th>
+                            <td mat-cell *matCellDef="let row" class="tableTextRight columWidth">
+                                <input class="checkboxNERoles form-check-input" type="checkbox" [(ngModel)]="row.ver"
+                                    aria-label="checkboxVer" id="checkboxVer" (change)="isChangePermisosRoles();"
+                                    [disabled]="isVer">
+                                <label class="form-check-label" for="flexCheckChecked">
+                                    Ver
+                                </label>
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="editar">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>editar</th>
+                            <td mat-cell *matCellDef="let row, let indexSH = index" class="tableTextRight columWidth">
+                                <input class="checkboxNERoles form-check-input" type="checkbox" [(ngModel)]="row.editar"
+                                    aria-label="checkboxEditar" id="checkboxEditar"
+                                    (change)="isChangePermisosRoles(); checkVer(indexSH, element, $event);"
+                                    [disabled]="isVer">
+                                <label class="form-check-label" for="flexCheckChecked">
+                                    Editar
+                                </label>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumnsMenuSecciones"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumnsMenuSecciones"></tr>
+
+                        <!-- Se muestra cuando no hay datos -->
+                        <div *ngIf="hasData">
+                            <tr class="mat-row" *matNoDataRow>
+                                <td class="mat-cell" colspan="6">No hay datos que coincidan con: "{{input.value}}"</td>
+                            </tr>
+                        </div>
+                    </table>
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+        <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;" class="example-element-row"
+            [class.example-expanded-row]="expandedElement === element"
+            (click)="expandedElement = expandedElement === element ? null : element">
+        </tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    </table>
+</div>

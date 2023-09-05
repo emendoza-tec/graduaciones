@@ -1,0 +1,35 @@
+<div class="container container-outlet">
+  <div [className]=" movilBienvenida ?  'mx-auto text-center': 'p-2 mt-5 mx-auto text-center'">
+    <em class="p-2 mt-3 bi bi-mortarboard graduate-icon-movil"></em>
+    <span [className]=" movilBienvenida ?  'f20b mx-auto text-center': 'f30  p-1 mt-5 mx-auto text-center'">{{'bienvenida.titulo' | translate}}</span>
+  </div>
+  <div>
+    <div class="mt-1 mx-auto text-justify" [className]=" movilBienvenida ?  'bienvenida-periodo-movil': 'f18 p-2'">
+      {{'bienvenida.texto1' | translate}}
+    </div>
+    <div class="mt-1 mx-auto text-justify" [className]=" movilBienvenida ?  'bienvenida-periodo-movil': 'f18 p-2'">
+      {{'bienvenida.texto2' | translate}}
+    </div>
+
+    <div class="f18 mt-3 mx-auto estimacion-date text-justify bienvenidaGraduacionStyle" [ngClass]="{'bienvenida-periodo-movil': movilBienvenida}">
+        <span>{{periodo}}</span>
+    </div>
+    <div class="mt-1 mx-auto text-justify" [className]=" movilBienvenida ?  'bienvenida-periodo-movil': 'f18 p-2'">
+      {{'bienvenida.texto3' | translate}}
+    </div>
+  </div>
+
+  <div  [className]=" movilBienvenida ?  'p-1 mt-1 container': 'p-2 mt-3 container'">
+    <div class="row">
+      <div class="col-6 text-center">
+          <a class="aStyle" (click)="abrirModalSelecionPeriodoPCG('ModificarFecha')" [className]=" movilBienvenida ?  'f14 link-date cursor-pointer ': 'f16 link-date cursor-pointer float-start'">{{'bienvenida.btnModificar' | translate}}</a>
+      </div>
+      <div class="col-6 text-center">
+        <button mat-button style="width: auto" (click)="guardarPeriodo()" [className]=" movilBienvenida ?  'f14 btn btn-purple p-0': 'f16 btn btn-purple'">{{'bienvenida.btnConfirmar' | translate}}</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+

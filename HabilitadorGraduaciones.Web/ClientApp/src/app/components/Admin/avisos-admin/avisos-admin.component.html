@@ -1,0 +1,158 @@
+<app-header-admin [titulo]="'Envío de avisos'" [breadCumbs]="'Envío de avisos /'"></app-header-admin>
+<div class="container-fluid">
+    <form [formGroup]="form" (ngSubmit)="enviarAviso()">
+        <div class="container-fluid">
+            <h2 class="title">Redactar Aviso</h2>
+            <div class="row">
+                <div class="col-xs-6 col-md-6 col-lg-6 mb-2">
+                    <input class="form-control input-txt" type="text" name="titulo" formControlName="titulo" id=""
+                        placeholder="Escribe el título">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="mb-3">
+                        <angular-editor class="" id="texto" formControlName="texto"
+                            [config]="editorConfig"></angular-editor>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-right: calc(var(--bs-gutter-x) * .5);">
+                <div class="dropzone col-xs-12" (click)="permisoEditar">
+                    <input type="file" accept="image/png,image/jpeg" name="fileDropRef" id="fileDropRef" #fileDropRef
+                        multiple (change)="onFileChange($event)">
+                    <img src="/assets/svg/Vector.svg" alt="" style="width: 36px; height: 48px; margin-top: 10px;">
+                    <h3>{{mensajeDrag}}</h3>
+                    <h4 *ngIf="!docCargado" [ngClass]="{'error': msgError, 'validado': !msgError}">{{subTxt}}</h4>
+                </div>             
+            </div>
+            <br>
+            <br>
+            <h2 class="title">Selecciona a qué alumno(s) desea enviarse el aviso</h2>
+            <div class="row">
+                <div class="col-sm mb-2">
+                    <select name="nivel" formControlName="nivel" class="form-select selects"
+                        (change)="onChangeFilter()">
+                        <option value="">Nivel</option>
+                        <option *ngFor="let nivelO of filtros?.nivel" value={{nivelO?.claveNivel}}>{{nivelO.descripcion}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-sm">
+                    <select name="campusId" formControlName="campusId" class="form-select selects"
+                        (change)="onChangeCampus();onChangeFilter()">
+                        <option value="">Campus</option>
+                        <option *ngFor="let campus of filtros?.campus" value={{campus.claveCampus}}>{{campus.descripcion}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-sm">
+                    <select name="sedeId" formControlName="sedeId" class="form-select selects"
+                        (change)="onChangeFilter()">
+                        <option value="">Sedes</option>
+                        <option *ngFor="let sedes of filtros?.sedes" value={{sedes.claveSede}}>{{sedes.descripcion}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-sm">
+                    <select name="escuelasId" formControlName="escuelasId" class="form-select selects"
+                        (change)="onChangeFilter()">
+                        <option value="">Escuelas</option>
+                        <option *ngFor="let escuela of filtros?.escuelas" value={{escuela.clave}}>
+                            {{escuela.descripcion}}</option>
+                    </select>
+                </div>
+                <div class="col-sm">
+                    <select name="programaId" formControlName="programaId" class="form-select selects"
+                        (change)="onChangeFilter()">
+                        <option value="">Programas</option>
+                        <option *ngFor="let programa of filtros?.programas" value={{programa.clave}}>
+                            {{programa.descripcion}}</option>
+                    </select>
+                </div>
+                <div class="col-sm">
+                    <select name="requisitoId" formControlName="requisitoId" class="form-select selects"
+                        (change)="onRequisitoChange(form.value.requisitoId)">
+                        <option value="">Requisito</option>
+                        <option *ngFor="let requisito of filtros?.requisitos" value={{requisito.clave}}>
+                            {{requisito.descripcion}}</option>
+                    </select>
+                </div>
+                <div class="col-sm" *ngIf="requisitoBandera">
+                    <select name="requisitoEstatus" formControlName="requisitoEstatus" class="form-select selects">
+                        <option value="">Requisito Estatus</option>
+                        <option value="1">Cumple</option>
+                        <option value="2">No Cumple</option>
+                        <option value="3">Todos</option>
+                    </select>
+                </div>
+                <div>
+                    <mat-form-field [floatLabel]="'never'">
+                        <mat-select formControlName="matricula" placeholder="Matrícula"
+                            [multiple]="true" #multiSelect class="form-select selects !important">
+                            <mat-option>
+                                <ngx-mat-select-search [formControl]="bankMultiFilterCtrl" 
+                                    placeholderLabel="Buscar Matrícula"
+                                    noEntriesFoundLabel="No se encontró"></ngx-mat-select-search>
+                            </mat-option>
+                            <mat-option *ngFor="let filtroMat of lstFiltroEscrito" [value]="filtroMat['clave']"
+                                placeholder="Matrícula">
+                                {{filtroMat['descripcion']}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <br>
+            <br>
+            <h2 class="title">Con copia a:</h2>
+            <div class="row">
+                <div class="col-2 mb-2">
+                    <select name="cc_rolesId" formControlName="cc_rolesId" class="form-select selects">
+                        <option value="">Rol</option>
+                        <option *ngFor="let rol of filtros?.roll" value={{rol.clave}}>{{rol.descripcion}}</option>
+                    </select>
+                </div>
+                <div class="col-2 ">
+                    <select name="cc_camposId" formControlName="cc_camposId" id="" class="form-select selects">
+                        <option value="">Campus</option>
+                        <option *ngFor="let campus of filtros?.campus" value={{campus.claveCampus}}>{{campus.descripcion}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <br>
+            <br>
+            <h2 class="title">Medio de envío de aviso:</h2>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="habilitador" formControlName="habilitador"
+                            id="habilitadorCheck" [value]="true" (click)="toggleCheck('habilitador')">
+                        <label class="form-check-label" for="habilitador" style="margin-left: 5px;">
+                            Habilitador de Graduación
+                        </label>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="correo" formControlName="correo"
+                            id="correoCheck" [value]="true" (click)="toggleCheck('correo')">
+                        <label class="form-check-label" for="correo">
+                            Correo
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 p-4">
+                    <button (click)="confirmar()" class="btn btn-default float-end btn-primary btn-confirmar"
+                        [disabled]="!form.valid || (!form.value.correo && !form.value.habilitador)">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

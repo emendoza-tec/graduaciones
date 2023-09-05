@@ -1,0 +1,17 @@
+<div class="snack-container box-{{getIcon.type}}">
+  <div class="row">
+    <div class="col-auto" *ngIf="getIcon.icon">
+      <mat-icon>
+        {{getIcon.icon}}
+      </mat-icon>
+    </div>
+    <div class="col my-auto">
+      <span>{{data.message}}</span>
+    </div>
+    <div class=" col-auto snack-container-icon" (click)="closeSnackbar()">
+      <mat-icon>
+        close
+      </mat-icon>
+    </div>
+  </div>
+</div>

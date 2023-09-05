@@ -1,0 +1,105 @@
+<div class="row d-flex text-center">
+  <div class="col">
+    <h1 mat-dialog-title><strong>{{data.titulo}}</strong></h1>
+  </div>
+  <div class="col-auto col-offset-11">
+    <i class="bi bi-x-lg cursorPointer" aria-hidden="true" (click)="cancelar()"></i>
+  </div>
+</div>
+<div mat-dialog-content>
+  <p>{{data.detalle}}</p>
+</div>
+<div>
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <button class="nav-link active" id="nav-mexicano-tab" (click)="validarTab(true)" data-bs-toggle="tab"
+              data-bs-target="#nav-mexicano" type="button" role="tab" aria-controls="nav-mexicano" aria-selected="true">
+        {{'modalDetalleExpediente.estMexicano'| translate}}
+      </button>
+      <button class="nav-link" id="nav-extranjero-tab" (click)="validarTab(false)" data-bs-toggle="tab"
+              data-bs-target="#nav-extranjero" type="button" role="tab" aria-controls="nav-extranjero" aria-selected="false">
+        {{'modalDetalleExpediente.estExtranjero'| translate}}
+      </button>
+    </div>
+  </nav>
+  <div class="tab-content m-2 p-2" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-mexicano" role="tabpanel" aria-labelledby="nav-mexicano-tab">
+      <div class="row" *ngFor="let documento of listaDoc">
+        <div class="col-auto" style="padding-right: 4px !important; margin: 0 0 -8px 0 !important;"><i class="bi bi-folder" aria-hidden="true"></i></div>
+        <div class="col" style="padding-left: 1px !important; margin: 0 0 -8px 0 !important; ">
+          <p>{{documento.descripcion}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="nav-extranjero" role="tabpanel" aria-labelledby="nav-extranjero-tab">
+      <div class="row" *ngFor="let documento of listaDoc">
+        <div class="col-auto" style="padding-right: 4px !important; margin: 0 0 -8px 0 !important;"><i class="bi bi-folder" aria-hidden="true"></i></div>
+        <div class="col" style="padding-left: 1px !important; margin: 0 0 -8px 0 !important;">
+          <p [innerHtml]="documento.descripcion"></p>
+        </div>
+      </div>
+      <div class="m-1" style="background-color: #D9D9D938">
+        <div mat-dialog-content>
+          <p><p [innerHtml]="descExtranjero"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col">{{'modalDetalleExpediente.estatus' | translate}}</div>
+        <div class="col-auto justify-content-center" *ngIf="data.isCumple">
+          <span class="spanCumple"><i class="bi bi-check-circle" style="color:white;" aria-hidden="true"></i> {{'modalDetalleExpediente.cumple' | translate}}</span>
+        </div>
+        <div class="col-auto justify-content-center" *ngIf="!data.isCumple">
+          <span class="spanNoCumple"><i class="bi bi-exclamation-circle" aria-hidden="true" style="color:white;"></i> {{'modalDetalleExpediente.noCumple' | translate}}</span>
+        </div>
+      </div>
+      <hr style="margin:0rem 0;">
+      <div class="row">
+        <table style="width: 100%; margin-left: 10px;" aria-hidden="true" aria-describedby="mydesc">
+          <tr>
+            <td>{{data.estadoDetalle}} </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row" *ngIf="data.comentarios.length > 0">
+  <strong>{{'modalDetalleExpediente.comentarios' | translate}}</strong>
+  <br>
+  <div class="row" *ngFor="let comentario of data.comentarios">
+    <div class="col-12 fechaComentario">
+      {{comentario.ultimaActualizacion| date: 'd De MMMM, y'}}
+    </div>
+    <div class="col-12">
+      {{comentario.detalle}}
+    </div>
+  </div>
+</div>
+<br>
+<div class="row">
+  <strong>{{'modalDetalleExpediente.dudas' | translate}}</strong>
+  <br>
+  <div class="card cursorPointer" style="border: 2px solid #0053F1;" (click)="copyMessage(data.correo)">
+    <div class="row text-end" style="padding-top: 5px;">
+      <i class="bi bi-files" aria-hidden="true"></i>
+    </div>
+        <div class="card-body" style="padding-top: 0px !important;" *ngIf="data.link">
+      <div class="row" *ngIf="data.linkName === 'none'">
+        <strong>{{data.link}}</strong>
+      </div>
+      <div class="row" *ngIf="data.linkName !='none'">
+        <a href="{{data.link}}" target="_blank" rel="noopener noreferrer" style="outline: none;">{{data.linkName}}</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="row"></div>

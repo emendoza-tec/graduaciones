@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col-sm-12 d-flex text-center">
+    <h1 mat-dialog-title  style="flex: 1 1 auto;"><strong>{{data.titulo}}</strong></h1>
+        <i class="bi bi-x-lg cursorPointer" aria-hidden="true" (click)="cancelar()"></i>
+  </div>
+  <label class="subtitulomodal" *ngIf="data.titulo == 'Nivel de Inglés' || data.titulo == 'English Level'">{{'tarjetas.contenido.ingles.subtitulo' | translate}}</label>
+</div>
+<div mat-dialog-content>
+  <p style="white-space: pre-line" [innerHTML]="data.mensaje"></p>
+</div>
+<div class="row">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col" *ngIf="data.aplica">{{ 'modal-detalle.estatus' | translate }}</div>
+        <div class="col-auto justify-content-center" *ngIf="data.isCumple && data.aplica">
+          <span class="spanCumple"><i class="bi bi-check-circle" style="color:white;" aria-hidden="true"></i> {{'requisitosAcademicosG.cumple' | translate}}</span>
+        </div>
+        <div class="col-auto justify-content-center" *ngIf="!data.isCumple && data.aplica">
+          <span class="spanNoCumple"><i class="bi bi-exclamation-circle" style="color:white;" aria-hidden="true"></i> {{'requisitosAcademicosG.noCumple' | translate}}</span>
+        </div>
+      </div>
+      <div class="hr"></div>
+      <div class="row">
+        <table style="width: 100%; margin-left: 15px;" aria-hidden="true" aria-describedby="mydesc">
+          <tr *ngFor="let ls of data.lista">
+            <td>{{ls.nombre}} </td>
+            <td class="text-end" style="padding-right:25px;">{{ls.valor}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row" *ngIf="data.aplica">
+  <strong>{{ 'modal-detalle.dudas' | translate }}:</strong>
+  <div class="card cursorPointer" style="border: 2px solid #0053F1;" (click)="copyMessage(data.link)">
+    <div class="row text-end" style="padding-top: 5px;">
+      <i class="bi bi-files" aria-hidden="true"></i>
+    </div>
+
+
+    <div class="card-body" style="padding-top: 0px !important;" *ngIf="data.link">
+      <div class="row" *ngIf="data.linkName === 'none'">
+        <strong>{{data.link}}</strong>
+      </div>
+      <div class="row" *ngIf="data.linkName !='none'">
+        <a href="{{data.link}}" target="_blank" rel="noopener noreferrer" style="outline: none;">{{data.linkName}}</a>
+
+      </div>
+    </div>
+
+
+    <div class="card-body" style="padding-top: 0px !important;" *ngIf="isContacto">
+      <div class="row">
+        <div class="col-auto"><i class="bi bi-person-fill bi-10x" style="font-size:250%;" aria-hidden="true"></i></div>
+        <div class="col-auto">
+          <div class="row"><strong style="padding: 0px;">{{data.contacto![0]}}</strong></div>
+          <div class="w-100"></div>
+          <div class="row" style="color: #0053f1;">{{data.contacto![1]}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="row"></div>

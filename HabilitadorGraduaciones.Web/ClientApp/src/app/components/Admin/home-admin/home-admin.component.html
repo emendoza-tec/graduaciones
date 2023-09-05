@@ -1,0 +1,16 @@
+<mat-sidenav-container>
+  <mat-sidenav 
+    id="sidenav" 
+    #sidenav
+    [ngClass]="this.sideNavService.getToggleValue ? 'sideNavOpen' : 'sideNavClosed'"
+    [opened]="this.sideNavService.getToggleValue" 
+    mode="side"
+    *ngIf="auth">
+    <app-sidenav></app-sidenav>  
+  </mat-sidenav>
+  <mat-sidenav-content [ngClass]="!this.sideNavService.getToggleValue ? 'sideContentOpen' : 'sideContentClosed'">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+

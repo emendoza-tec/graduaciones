@@ -1,0 +1,51 @@
+
+    <button class="btn-close float-end" aria-label="Close" (click)="cerrarModal()"></button>
+    <div class="p-3 mt-3 mx-auto">
+
+      <label class="f30 text-center" style="line-height: 33px !important;">{{'modalCeremonia.texto' | translate}}</label><br><br>
+      <span class="f18">{{'modalCeremonia.texto1' | translate}}</span>
+      <u><span class="f18 mt-1 text-start"> {{'modalCeremonia.texto1Subrayado' | translate}}</span></u>
+      <u><span class="f18b mt-1 text-start"> {{'modalCeremonia.texto1Negritas' | translate}}</span></u>
+      <span class="f18">{{'modalCeremonia.texto2' | translate}}</span><br><br>
+      <span class="f16b">{{'modalCeremonia.pregunta' | translate}}</span><br>
+      <span class="f16b pt-1">{{'modalCeremonia.textoCeremonia' | translate}}</span>
+      <div *ngIf="periodoCeremonia">
+        <div class="f18 p-2 mt-3 estimacion-date text-justify" style=" width: 235px; height: 39px; left: 168px; top: 261px;">
+          <span>{{periodoCeremonia.descripcion}}</span>
+        </div>
+      </div>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="form-group">
+          <div class="col-xs-12 col-md-9 col-lg-9 mt-3 mb-3 mx-auto text-start">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="aceptar" value="1" formControlName="aceptar" (change)="onItemChange($event.target)">
+              <label class="form-check-label f16 ms-1">
+                {{'modalCeremonia.si' | translate}}
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="aceptar" value="0" formControlName="aceptar" (change)="onItemChange($event.target)">
+              <label class="form-check-label f16 ms-1">
+                {{'modalCeremonia.no' | translate}}
+              </label>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="mostrarMotivo">
+          {{'modificarFecha.mensajeMotivoNoCeremonia' | translate}}
+          <div class="input-group">
+            <i *ngIf="!validacionMotivo || motivo.length == 250" class="bi bi-exclamation-circle-fill text-end icono-motivo"></i>
+            <!-- <textarea class="form-control rounded" placeholder="Escribe el motivo de tu cambio" maxlength="250" [(ngModel)]="motivo"
+        [ngStyle]="{'border': mostrarMotivo && motivo.length == 0 ? '1px solid #EA337D': '1px solid #3E44E7'}" formControlName="motivo"></textarea> -->
+            <label class="text-end" style="position: absolute;right: 0;top: -20px;">{{caracteres}} / 250</label>
+            <textarea class="form-control rounded" placeholder="Escribe el motivo de tu cambio" maxlength="250" [(ngModel)]="motivo" (keydown)="onKeyPress($event)" (focusout)="onFocusOut()" (keyup)="onKeyUp($event)"
+                      [ngStyle]="{'border': validacionMotivo && caracteres < 250 ? '1px solid #3E44E7': '1px solid #EA337D'}" formControlName="motivo"></textarea>
+          </div>
+        </div>
+        <div class="form-row text-end mt-3">
+          <button mat-button class="btn btn-purple" type="submit" [disabled]="!form.valid">{{'modalCeremonia.btnConfirmar' | translate}}</button>
+        </div>
+
+      </form>
+
+    </div>

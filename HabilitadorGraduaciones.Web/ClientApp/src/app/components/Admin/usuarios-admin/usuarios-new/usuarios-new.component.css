@@ -1,0 +1,96 @@
+
+/*Estilos columnas roles*/
+.mat-column-nivel {
+  width: 10% !important;
+  max-width: 20% !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 5px;
+}
+
+.mat-column-sede {
+  width: 20% !important;
+  max-width: 140px !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 5px;
+}
+
+.mat-column-campus {
+  width: 20% !important;
+  max-width: 140px !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 5px;
+}
+
+.mat-column-rol {
+  width: 20% !important;
+  max-width: 140px !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mat-column-usuarioModificacion {
+  width: 10% !important;
+  max-width: 140px !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mat-column-fechaModificacion {
+  width: 10% !important;
+}
+
+.label-form {
+  color: #6368E7;
+  font-family: Roboto, Helvetica Neue, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+}
+.input-form{
+    border: 1px solid #3E44E7;
+    border-radius: 4px;
+}
+
+.w-200px{
+    width: 180px !important;
+}
+::ng-deep.mat-form-field-wrapper {
+    padding-bottom: 0 !important; 
+}
+.mt-9px{
+    margin-top: -9px !important;
+}
+
+::ng-deep .form-control:disabled {
+    background-color: #fafafa; 
+    opacity: 1;
+}
+.titulo-historico {
+  font-family: Roboto, Helvetica Neue, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+  color: #6368E7;
+}
+
+  ::ng-deep.mat-select-arrow {
+    display: none;
+  }
+
+  .labelRequerido{
+      font-size: 11px;
+      color: #FF0000;
+  }
+
+ ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-infix {
+  margin: -3px -1px;
+  }

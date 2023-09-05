@@ -1,0 +1,41 @@
+<app-header-admin [titulo]="'Ver lo que ve el estudiante'" [breadCumbs]="'Ver lo que ve el estudiante /'"></app-header-admin>
+<div class="row" style="margin: 25px;">
+    <div class="col-auto verticalCenter">
+        <mat-form-field style="padding: 0px; margin: 0px;">
+            <mat-select [(value)]="isMatriculaString">   
+              <mat-option value="1">Matrícula</mat-option>
+              <mat-option value="0">Alumno</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+    <div class="col-6 verticalCenter">
+        <div class="row col-12 m-0">
+            <div class="col-12 p-0 m-0">
+                <input type="text" style="margin-top:10px" class="form-control" id="inputPassword3" [placeholder]="isMatriculaString  === '1' ? 'Escriba matricula' : 'Escriba nombre del alumno'" [(ngModel)]="busqueda" required>
+                 <button class="btn-close float-end" aria-label="Close" style=" margin-top: -31px; margin-right: 9px;width:4px;" (click)="limpiarBusqueda()"></button>
+            </div>
+        </div>
+        <div class="row" style="padding: 4px 12px;">
+            <ngx-spinner *ngIf="!isLoading && !isSearching" bdColor="rgba(0,0,0,0.1);" size="large" color="#000000" type="ball-clip-rotate" size="default" [fullScreen] = "false" ></ngx-spinner>
+            <div *ngIf="isLoading" class="col-12" style="max-height: 300px;overflow-y: auto;border: 1px solid #B1B1B1;">
+
+                <div *ngIf="BusquedaEncontrada.length == 0" style="padding: 20px 10px; text-align:  center;">
+                <span><strong>Alumno no encontrado</strong> </span>
+                </div>
+                <mat-nav-list *ngFor="let alumno of BusquedaEncontrada">
+                    <a mat-list-item (click)="alumnoSeleccionado(alumno.matricula)">
+                        <span mat-line><strong>Matrícula:</strong> {{alumno.matricula}}</span>
+                        <span mat-line><strong>Nombre:</strong> {{alumno.nombre}}</span>
+                        <span mat-line><strong>Carrera:</strong> {{alumno.carrera}}</span>
+                    </a>
+                </mat-nav-list>
+            
+            </div>
+        </div>
+
+    </div>
+    <div class="col-auto verticalCenter pt-2">
+        <button type="submit" class="btn btn-primary" (click)="_buscar(busqueda, isMatriculaString);">Buscar</button>
+    </div>
+</div>
+<app-home [matricula]="matricula" *ngIf="isSearching"></app-home>

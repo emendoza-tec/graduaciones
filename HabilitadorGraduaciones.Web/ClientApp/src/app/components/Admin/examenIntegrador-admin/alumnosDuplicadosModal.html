@@ -1,0 +1,16 @@
+<div class="row d-flex text-center">
+    <div class="col">
+        <h1 mat-dialog-title>{{data.titulo}}</h1>
+    </div>
+    <div class="col-auto col-offset-11">
+        <i class="bi bi-x-lg cursorPointer" aria-hidden="true" (click)="cancelar()"></i>
+    </div>
+</div>
+<div mat-dialog-content>
+    <div class="row" *ngFor="let d of data.alumnos">
+        <div class="col-auto">Matricula: </div>
+        <div class="col">
+            <p>{{d.Matricula}}</p>
+        </div>
+    </div>
+</div>

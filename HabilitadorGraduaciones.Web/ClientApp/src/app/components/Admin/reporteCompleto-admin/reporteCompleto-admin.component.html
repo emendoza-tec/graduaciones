@@ -1,0 +1,94 @@
+<app-header-admin [titulo]="'Reporte completo'" [breadCumbs]="'Reporte Completo /'"></app-header-admin>
+<div class="container-fluid">
+  <form [formGroup]="form" (ngSubmit)="descargarReporteEstimadoDeGraduacion()">
+    <div class="row ps-3 pe-3">
+      <div class="col-4">
+        <div class="form-group">
+          <mat-form-field class="w-100">
+            <label class="label-form" for="campus">Campus:</label>
+            <mat-select [multiple]="true" #multiSelect class="form-select input-form" formControlName="campus" [disabled]="disableSabana || disableEstimadoGraducion"
+                        (selectionChange)="onChangeCampus()" [(ngModel)]="selectedValuesCampus">
+              <mat-option #multiCampusSearch matInput (input)="onInputChangeCampus($event)">
+                <ngx-mat-select-search placeholderLabel="Buscar Campus"
+                                       noEntriesFoundLabel="No se encontraron resultados"></ngx-mat-select-search>
+              </mat-option>
+              <mat-option [value]="0" (click)="marcarTodos('multiSelect')">Todos</mat-option>
+              <mat-option *ngFor="let campus of campusFilter" [value]="campus.claveCampus">
+                {{campus.descripcion}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group mt-9px">
+          <mat-form-field class="w-100">
+            <label class="label-form" for="sedes">Sedes:</label>
+            <mat-select [multiple]="true" #multiSelectSedes class="form-select input-form" [disabled]="disableSabana || disableEstimadoGraducion"
+                        formControlName="sedes" [(ngModel)]="selectedValuesSedes">
+              <mat-option #multiSedesSearch matInput (input)="onInputChangeSedes($event)">
+                <ngx-mat-select-search placeholderLabel="Buscar Sede"
+                                       noEntriesFoundLabel="No se encontraron resultados"> </ngx-mat-select-search>
+              </mat-option>
+              <mat-option *ngIf="sedesFiltradas.length > 0" [value]="0" (click)="marcarTodos('multiSelectSedes')">
+                Todos
+              </mat-option>
+              <mat-option *ngFor="let sede of sedesFiltradas" [value]="sede.claveSede" [value2]="sede.claveCampus">
+                {{sede.descripcion}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group mt-9px">
+          <mat-form-field class="w-100 form-group" [floatLabel]="'never'">
+            <label class="label-form" for="niveles">Niveles:</label>
+            <mat-select [multiple]="true" #multiSelectNiveles class="form-select input-form" formControlName="niveles" [(ngModel)]="selectedValuesNiveles"
+             [disabled]="disableSabana || disableEstimadoGraducion">
+              <mat-option [value]="0" (click)="marcarTodos('multiSelectNiveles')">Todos</mat-option>
+              <mat-option *ngFor="let nivel of nivelList" [value]=nivel.clave>
+                {{nivel.descripcion}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="container-fluid row d-table">
+  <div class="col-6 d-table-cell">
+    <div class="card shadow-card mt-2 offset-sm">
+      <div class="card-container" style="min-height: 160px;">
+        <div class="row" style="text-align: center;">
+          <h2>Da click para descargar el Reporte actualizado de Sabana</h2>
+        </div>
+        <div class="row" style="text-align: center;">
+          <div class="col-12 p-4">
+            <button class="btn btn-default btn-enviar" type="submit" (click)="descargarSabana()" [disabled]="disableSabana">
+              Descargar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-6 d-table-cell">
+    <div class="card shadow-card mt-2offset-sm">
+      <div class="card-container" style="min-height: 160px;">
+        <div class="row" style="text-align: center;">
+          <h2>Da click para descargar el Reporte actualizado de Estimado de Graduación</h2>
+        </div>
+        <div class="row" style="text-align: center;">
+          <div class="col-12 p-4">
+            <button class="btn btn-default btn-enviar" type="submit" (click)="descargarReporteEstimadoDeGraduacion()" [disabled]="disableEstimadoGraducion">
+              Descargar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

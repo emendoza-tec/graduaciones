@@ -1,0 +1,29 @@
+<h1 mat-dialog-title class="center-text">Enviarás el aviso con los siguientes datos</h1>
+<div class="center-text">
+  <h2>¿Estás seguro?</h2>
+</div>
+<div>
+  <div *ngIf="!hasMatricula">
+    <p class="propety-name">Nivel:<span class="property-value" [ngStyle]="{'color': (dictionary.nivel==='Todos')?'red':'black'}">{{dictionary.nivel}}</span></p>
+    <p class="propety-name">Campus:<span class="property-value" [ngStyle]="{'color': (dictionary.campusId==='Todos')?'red':'black'}">{{dictionary.campusId}}</span></p>
+    <p class="propety-name">Sedes:<span class="property-value" [ngStyle]="{'color': (dictionary.sedeId==='Todos')?'red':'black'}">{{dictionary.sedeId}}</span></p>
+    <p class="propety-name">Escuelas:<span class="property-value" [ngStyle]="{'color': (dictionary.escuelasId==='Todos')?'red':'black'}">{{dictionary.escuelasId}}</span></p>
+    <p class="propety-name">Programas:<span class="property-value" [ngStyle]="{'color': (dictionary.programaId==='Todos')?'red':'black'}">{{dictionary.programaId}}</span></p>
+    <p class="propety-name">Requisitos:<span class="property-value" [ngStyle]="{'color': (dictionary.requisitoId==='Todos')?'red':'black'}">{{dictionary.requisitoId}}</span></p>
+  </div>
+  <p class="propety-name">Matrículas:<span class="property-value" [ngStyle]="{'color': (dictionary.matricula==='Todos' || dictionary.matricula==='No se encontró ninguna matrícula con esa información.')?'red':'black'}">{{dictionary.matricula}}</span></p>
+
+  <h2 class="subtittle-margin">Con copia a:</h2>
+  <p class="propety-name">Roles:<span class="property-value" [ngStyle]="{'color': (dictionary.cc_rolesId==='Ninguno')?'red':'black'}">{{dictionary.cc_rolesId}}</span></p>
+  <p class="propety-name">Campus:<span class="property-value"[ngStyle]="{'color': (dictionary.cc_camposId==='Ninguno')?'red':'black'}">{{dictionary.cc_camposId}}</span></p>
+
+  <h2 class="subtittle-margin">Medios de envío:</h2>
+  <p class="propety-name"[hidden]="!dictionary.habilitador">-Habilitador de graduación</p>
+  <p class="propety-name"[hidden]="!dictionary.correo">-Correo</p>
+</div>
+
+
+<div style="width: 100%; margin-top: 5%"> 
+  <button mat-button (click)="exit()" class="btn btn-default btn-primary btn-cancelar" style="float: left; margin-right: 10%; background-color: #ffffff; color: #0053F1;">Cancelar</button>
+  <button mat-button (click)="submit()" class="btn btn-default btn-primary btn-confirmar" style="float: right; margin-left: 10%">Aceptar</button>
+</div>

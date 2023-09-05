@@ -1,0 +1,63 @@
+<div class="row d-flex text-center">
+    <div class="col">
+      <h1 mat-dialog-title>{{data.titulo}}</h1>
+    </div>
+    <div class="col-auto col-offset-11">
+      <i class="bi bi-x-lg cursorPointer" aria-hidden="true" (click)="cancelar()"></i>
+    </div>
+  </div>
+  <div mat-dialog-content>
+    <p>{{data.detalle}}</p>
+  </div>
+  <div class="row">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col">Estatus</div>
+          <div class="col-auto justify-content-center" *ngIf="data.isCumple">
+            <span class="spanCumple"><i class="bi bi-check-circle" aria-hidden="true"></i> Cumple</span>
+          </div>
+          <div class="col-auto justify-content-center" *ngIf="!data.isCumple">
+            <span class="spanNoCumple"><i class="bi bi-exclamation-circle" aria-hidden="true"></i> No Cumple</span>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <table style="width: 100%; margin-left: 15px;" aria-hidden="true" aria-describedby="mydesc">
+            <tr>
+              <td>Nivel acreditado<td>
+              <td>{{data.nivelAcreditado}}<td>
+            </tr>
+            <tr>
+              <td>Nivel requisito <td>
+              <td>{{data.nivelRequisito}}<td>
+              </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  <br>
+  <div class="row">
+    <strong>Dudas:</strong>
+    <br>
+    <br>
+    <div class="card" style="border: 2px solid #0053F1;">
+      <div class="row text-end" style="padding-top: 5px;">
+        <i class="bi bi-files" aria-hidden="true"></i>
+      </div>
+      <div class="card-body" style="padding-top: 0px;">
+        <div class="row" *ngFor="let contacto of data.dudas.contactos">
+          <div class="col-auto"><i class="bi bi-person-fill bi-10x" aria-hidden="true" style="font-size:250%;"></i></div>
+          <div class="col-auto">
+            <div class="row"><strong style="padding: 0px;">{{contacto.nombre}}</strong></div>
+            <div class="w-100"></div>
+            <div class="row" style="color: #0053f1;">{{contacto.correo}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  <div class="row"></div>

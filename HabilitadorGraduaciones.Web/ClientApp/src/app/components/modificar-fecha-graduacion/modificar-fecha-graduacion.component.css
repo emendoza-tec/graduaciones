@@ -1,0 +1,17 @@
+::ng-deep .form-check .form-check-input {
+    float: none !important; 
+    margin-left: -1.5em;
+}
+
+::ng-deep .la-ball-clip-rotate > div {
+  margin-top: -22px !important;
+}
+
+::ng-deep .icono-motivo {
+  font-size: 16px;
+    color: #EA337D;
+    position: absolute;
+    right: 5px;
+    z-index: 2;
+    top: 5px;
+}

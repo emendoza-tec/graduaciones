@@ -1,0 +1,48 @@
+<button class="btn-close float-end" aria-label="Close" [mat-dialog-close]="data"></button>
+<div class="p-2 mt-3 mx-auto ">
+  <label class="text-center f30 fw-bold" style="line-height: 33px !important;"> {{'modificarFecha.encabezado' | translate}}</label><br/><br/>
+  <span class="f18 mt-1 text-start"> {{'modificarFecha.texto' | translate}}</span>
+  
+  <u><span class="f18 mt-1 text-start"> {{'modificarFecha.textoSubyrayado' | translate}}</span></u>
+  <u><span class="f18b mt-1 text-start"> {{'modificarFecha.textoNegrita' | translate}}</span></u>
+  <ngx-spinner *ngIf="loading" bdColor="rgba(0,0,0,0.1);" size="large" color="#000000" type="ball-clip-rotate"
+               size="default" [fullScreen]="false"></ngx-spinner>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form-group text-center">
+      <div class="col-xs-12 col-md-10 col-lg-7 mt-3 mb-3 mx-auto text-start" style="height:100px;">
+        <div class="form-check" *ngFor="let item of listPeriodos.slice(0,4)">
+          <input class="form-check-input" type="radio" name="periodo" [id]="item.periodoId" [value]="item.periodoId" formControlName="periodo"  (change)="onItemChange($event.target)">
+          <label class="form-check-label f16 ms-1" [for]="item.periodoId">
+            {{item.descripcion}}
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div *ngFor="let item of listPeriodos.slice(0,1)">
+      <div class="d-inline mt-3">
+        <em class="bi bi-exclamation-circle"></em>
+      </div>
+      <div class="d-inline">
+        <span class="txt-info">
+          {{'modificarFecha.advertencia' | translate}}
+        </span>
+      </div>
+    </div>
+    <br/>
+    <div class="text-start" *ngIf="mostrarMotivo">
+      {{'modificarFecha.mensajeMotivo' | translate}}
+      <div class="input-group">
+        <i *ngIf="!validacionMotivo || motivo.length == 250" class="bi bi-exclamation-circle-fill text-end icono-motivo" ></i>
+        <label class="text-end" style="position: absolute;right: 0;top: -20px;" >{{caracteres}} / 250</label>
+        <textarea class="form-control rounded" placeholder="Escribe el motivo de tu cambio" maxlength="250" [(ngModel)]="motivo" (keydown)="onKeyPress($event)" (focusout)="onFocusOut()" (keyup)="onKeyUp($event)"
+        [ngStyle]="{'border': validacionMotivo && caracteres < 250 ? '1px solid #3E44E7': '1px solid #EA337D'}" formControlName="motivo"></textarea>
+      </div>
+    </div>
+
+    <div class="form-row text-end mt-3">
+      <button mat-button class="btn btn-purple" type="submit" [disabled]="!form.valid">{{'modificarFecha.btnConfirmar' | translate}}</button>
+    </div>
+  </form>
+
+</div>

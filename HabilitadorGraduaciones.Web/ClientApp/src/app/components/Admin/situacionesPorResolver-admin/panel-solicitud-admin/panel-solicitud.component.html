@@ -1,0 +1,336 @@
+<div class="ParentAdmin container-fluid">
+    <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTab" style="height: 100%;">
+        <mat-tab class="mat-elevation-z5">
+            <ng-template mat-tab-label>
+                <ngx-spinner *ngIf="isLoadingResultsSolPendientes" name="isLoadingResultsSolPendientes"
+                    style="width:60px" bdColor="rgba(0,0,0,0.1);" color="#000000" type="ball-clip-rotate" size="small"
+                    [fullScreen]="false"></ngx-spinner>
+                <div *ngIf="!isLoadingResultsSolPendientes">
+                    <span class="color-PendientesTab" [class.selectTab]="selectedTab === 0">Pendientes
+                        {{totalPendienes}}</span>
+                </div>
+            </ng-template>
+            <ng-container id="containerPendientes">
+                <!--Pendientes-->
+                <div class="card cardPanelSolicitud">
+                    <h2>Solicitudes pendientes de modificación o ajustes de datos</h2>
+                    <br>
+                    <div class="right-inner-addon col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                        <i class="bi bi-search" aria-hidden="true"></i>
+                        <input #input type="text" class="form-control" placeholder="Ej. A00828911"
+                            (keyup)="applyFilter($event)" />
+                    </div>
+                    <br>
+                    <div class="row d-flex justify-content-center" *ngIf="isLoadingResultsSolPendientes">
+                        <ngx-spinner name="isLoadingResultsSolPendientes" bdColor="rgba(0,0,0,0.1);" color="#000000"
+                            type="ball-clip-rotate" size="default" [fullScreen]="false">
+                            Cargando solicitudes pendientes...
+                        </ngx-spinner>
+                    </div>
+                    <div *ngIf="dataSourcePendientes" class="dTable">
+                        <div class="row d-flex justify-content-center" *ngIf="isDetailsResults">
+                            <ngx-spinner name="isDetailsResults" bdColor="rgba(0,0,0,0.3)" size="default"
+                                color="#FFFFFF" type="ball-clip-rotate" [fullScreen]="false"></ngx-spinner>
+                        </div>
+                        <table mat-table [dataSource]="dataSourcePendientes" aria-describedby="Pendientes" matSort
+                            #sortSolPendientes="matSort">
+
+                            <ng-container matColumnDef="matricula">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Matricula</th>
+                                <td mat-cell *matCellDef="let row">{{ row.matricula }}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="periodoGraduacion">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Term. Grad.</th>
+                                <td mat-cell *matCellDef="let row" class="tableTextCenter">{{
+                                    row.periodoGraduacion }}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="descripcion">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Cambio solicitado</th>
+                                <td mat-cell *matCellDef="let row">{{ row.descripcion }}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="fechaSolicitud">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha de solicitud
+                                </th>
+                                <td mat-cell *matCellDef="let row" class="fechaComentario">{{
+                                    row.fechaSolicitud | date :'dd/MMM/YYYY'}}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="ultimaActualizacion">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Ultima actualización
+                                </th>
+                                <td mat-cell *matCellDef="let row" class="fechaComentario">{{
+                                    row.ultimaActualizacion | date :'dd/MMM/YYYY'}}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="estatus">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Estatus</th>
+                                <td mat-cell *matCellDef="let row"
+                                    [ngClass]="{'row-orange': row.estatus === 'No abierta', 'row-yellow': row.estatus === 'Solicitud en revisión' }">
+                                    <ul class="ulEstatus">
+                                        <li><span>{{ row.estatus }}</span></li>
+                                    </ul>
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="datoIncorrecto">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Dato Incorrecto</th>
+                                <td mat-cell *matCellDef="let row">{{ row.datoIncorrecto }}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="datoCorrecto">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Dato Correcto</th>
+                                <td mat-cell *matCellDef="let row">{{ row.datoCorrecto }}</td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+                            <!-- Acciones-->
+                            <ng-container matColumnDef="actions" class="d-flex justify-content-center">
+                                <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                                <td mat-cell *matCellDef="let row;" class="tableTextCenter">
+                                    <button focusable="false" class="btn btn-primary btnSolicitud"
+                                        (click)="verDetalle(row)">
+                                        Ver detalle
+                                    </button>
+                                </td>
+                            </ng-container>
+
+                            <!-- Row shown when there is no matching data. -->
+                            <tr class="mat-row" *matNoDataRow>
+                                <td class="mat-cell" colspan="6">
+                                    <div *ngIf="totalPendienes == 0">No hay solicitudes pendientes</div>
+                                    <div *ngIf="totalPendienes > 0">No hay datos que coincidan con: "{{input.value}}"</div>
+                                </td>
+                            </tr>
+
+
+                        </table>
+                    </div>
+                    <div *ngIf="dataSourcePendientes">
+                        <mat-paginator paginator #paginatorSolPendientes [length]="dataSourcePendientes.data.length"
+                            showFirstLastButtons>
+                        </mat-paginator>
+                    </div>
+                </div>
+            </ng-container>
+        </mat-tab>
+
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <ngx-spinner *ngIf="isLoadingResultsSolAprobadas" name="isLoadingResultsSolAprobadas" style="width:60px"
+                    bdColor="rgba(0,0,0,0.1);" color="#000000" type="ball-clip-rotate" size="small"
+                    [fullScreen]="false"></ngx-spinner>
+                <div *ngIf="!isLoadingResultsSolAprobadas">
+                    <span class="color-AprobadosTab" [class.selectTab]="selectedTab === 1">Aprobados
+                        {{totalAprobados}}</span>
+                </div>
+            </ng-template>
+            <ng-container id="containerAprobadas">
+                <!--Aprobadas-->
+                <div class="card cardPanelSolicitud">
+                    <h2>Solicitudes Aprobadas</h2>
+                    <br>
+                    <div class="right-inner-addon col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                        <i class="bi bi-search" aria-hidden="true"></i>
+                        <input #input type="text" class="form-control" placeholder="Ej. A00828911"
+                            (keyup)="applyFilterAprobadas($event)" />
+                    </div>
+                    <br>
+                    <div class="row d-flex justify-content-center" *ngIf="isLoadingResultsSolAprobadas">
+                        <ngx-spinner name="isLoadingResultsSolAprobadas" bdColor="rgba(0,0,0,0.1);" color="#000000"
+                            type="ball-clip-rotate" size="default" [fullScreen]="false">
+                            Cargando solicitudes aprobadas...
+                        </ngx-spinner>
+                    </div>
+                    <div *ngIf="dataSourceAprobadas" class="tablaBorder table-container dTable">
+
+                        <table mat-table [dataSource]="dataSourceAprobadas" aria-describedby="Aprobadas" matSort
+                            #sortSolAprobadas="matSort">
+
+                            <ng-container matColumnDef="matricula">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-background">
+                                    Matricula</th>
+                                <td mat-cell *matCellDef="let row">{{ row.matricula }}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="periodoGraduacion">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-background">
+                                    Term. Grad.</th>
+                                <td mat-cell *matCellDef="let row" class="tableTextCenter">{{
+                                    row.periodoGraduacion }}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="descripcion">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-background">
+                                    Cambio solicitado</th>
+                                <td mat-cell *matCellDef="let row">{{ row.descripcion }}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="fechaSolicitud">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-background">
+                                    Fecha de solicitud</th>
+                                <td mat-cell *matCellDef="let row" class="fechaComentario">{{
+                                    row.fechaSolicitud | date :'dd/MMM/YYYY'}}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="ultimaActualizacion">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-background">
+                                    Ultima actualización</th>
+                                <td mat-cell *matCellDef="let row" class="fechaComentario">{{
+                                    row.ultimaActualizacion | date :'dd/MMM/YYYY'}}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="estatus">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-background">
+                                    Estatus</th>
+                                <td mat-cell *matCellDef="let row"
+                                    [ngClass]="{'row-orange': row.estatus === 'No abierta', 'row-yellow': row.estatus === 'Solicitud en revisión' }">
+                                    {{ row.estatus }}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="datoIncorrecto">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-background">
+                                    Dato Incorrecto</th>
+                                <td mat-cell *matCellDef="let row">{{ row.datoIncorrecto }}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="datoCorrecto">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-background">
+                                    Dato Correcto</th>
+                                <td mat-cell *matCellDef="let row">{{ row.datoCorrecto }}</td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumnsAprobadas" class="header-background">
+                            </tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumnsAprobadas"></tr>
+
+                            <!-- Row shown when there is no matching data. -->
+                            <tr class="mat-row" *matNoDataRow>
+                                <td class="mat-cell" colspan="6">
+                                    <div *ngIf="totalPendienes == 0">No hay solicitudes aprobadas</div>
+                                    <div *ngIf="totalPendienes > 0">No hay datos que coincidan con: "{{input.value}}"</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div *ngIf="dataSourceAprobadas">
+                        <mat-paginator paginator #paginatorSolAprobadas [length]="dataSourceAprobadas.data.length"
+                            showFirstLastButtons>
+                        </mat-paginator>
+                    </div>
+                </div>
+            </ng-container>
+        </mat-tab>
+
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <ngx-spinner *ngIf="isLoadingResultsSolNoAprobadas" name="isLoadingResultsSolNoAprobadas"
+                    style="width:60px" bdColor="rgba(0,0,0,0.1);" color="#000000" type="ball-clip-rotate" size="small"
+                    [fullScreen]="false"></ngx-spinner>
+                <div *ngIf="!isLoadingResultsSolNoAprobadas">
+                    <span class="color-NoAprobadosTab" [class.selectTab]="selectedTab === 2">No Aprobadas
+                        {{totalNoAprobados}}</span>
+                </div>
+            </ng-template>
+            <ng-container id="containerNoAprobadas">
+                <!--No Aprovadas-->
+                <div class="card cardPanelSolicitud">
+                    <h2>Solicitudes No aprobadas</h2>
+                    <br>
+                    <div class="right-inner-addon col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                        <i class="bi bi-search" aria-hidden="true"></i>
+                        <input #input type="text" class="form-control" placeholder="Ej. A00828911"
+                            (keyup)="applyFilterNoAprobadas($event)" />
+                    </div>
+                    <br>
+                    <div class="row d-flex justify-content-center" *ngIf="isLoadingResultsSolNoAprobadas">
+                        <ngx-spinner name="isLoadingResultsSolNoAprobadas" bdColor="rgba(0,0,0,0.1);" color="#000000"
+                            type="ball-clip-rotate" size="default" [fullScreen]="false">
+                            Cargando solicitudes no aprobadas...
+                        </ngx-spinner>
+                    </div>
+
+                    <div *ngIf="dataSourceNoAprobadas" class="tablaBorder table-container dTable">
+                        <table mat-table [dataSource]="dataSourceNoAprobadas" aria-describedby="NoAprobadas" matSort
+                            #sortSolNoAprobadas="matSort">
+
+                            <ng-container matColumnDef="matricula">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-background">
+                                    Matricula</th>
+                                <td mat-cell *matCellDef="let row">{{ row.matricula }}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="periodoGraduacion">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-background">
+                                    Term. Grad.</th>
+                                <td mat-cell *matCellDef="let row" class="tableTextCenter">{{
+                                    row.periodoGraduacion }}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="descripcion">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-background">
+                                    Cambio solicitado</th>
+                                <td mat-cell *matCellDef="let row">{{ row.descripcion }}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="fechaSolicitud">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-background">
+                                    Fecha de solicitud</th>
+                                <td mat-cell *matCellDef="let row" class="fechaComentario">{{
+                                    row.fechaSolicitud | date :'dd/MMM/YYYY'}}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="ultimaActualizacion">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-background">
+                                    Ultima actualización</th>
+                                <td mat-cell *matCellDef="let row" class="fechaComentario">{{
+                                    row.ultimaActualizacion | date :'dd/MMM/YYYY'}}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="estatus">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-background">
+                                    Estatus</th>
+                                <td mat-cell *matCellDef="let row"
+                                    [ngClass]="{'row-orange': row.estatus === 'No abierta', 'row-yellow': row.estatus === 'Solicitud en revisión' }">
+                                    {{ row.estatus }}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="datoIncorrecto">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-background">
+                                    Dato Incorrecto</th>
+                                <td mat-cell *matCellDef="let row">{{ row.datoIncorrecto }}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="datoCorrecto">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-background">
+                                    Dato Correcto</th>
+                                <td mat-cell *matCellDef="let row">{{ row.datoCorrecto }}</td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumnsAprobadas" class="header-background">
+                            </tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumnsAprobadas"></tr>
+
+                            <!-- Row shown when there is no matching data. -->
+                            <tr class="mat-row" *matNoDataRow>
+                                <td class="mat-cell" colspan="6">
+                                    <div *ngIf="totalPendienes == 0">No hay solicitudes no aprobadas</div>
+                                    <div *ngIf="totalPendienes > 0">No hay datos que coincidan con: "{{input.value}}"</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div *ngIf="dataSourceNoAprobadas">
+                        <mat-paginator paginator #paginatorSolNoAprobadas [length]="dataSourceNoAprobadas.data.length"
+                            showFirstLastButtons>
+                        </mat-paginator>
+                    </div>
+                </div>
+            </ng-container>
+        </mat-tab>
+    </mat-tab-group>
+</div>

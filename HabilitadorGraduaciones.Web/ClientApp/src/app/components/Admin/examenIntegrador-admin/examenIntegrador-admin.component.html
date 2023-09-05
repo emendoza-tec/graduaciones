@@ -1,0 +1,85 @@
+<app-header-admin [titulo]="'Examen Integrador'" [breadCumbs]="'Examen Integrador /'"></app-header-admin>
+<br>
+<div class="row d-flex justify-content-end">
+    <div class="col-auto">
+        <a class="btn btn-primary" [href]="archivoPlantilla" [ngClass]="{'aDisabled': (disableAction || isAnalizandoData) || !permisoExIntegrador.editar}" 
+        (click)='(disableAction || isAnalizandoData) || !permisoExIntegrador.editar ? $event.preventDefault() : null'>
+            <i class="bi bi-cloud-download" aria-hidden="true"></i>
+            Descargar template</a>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-5">
+        <div class="container " appDnd (drop)="onFileDropped($event); resetEvent($event);">
+            <input type="file" #fileDropRef id="fileDropRef" (change)="fileBrowseHandler($event)" class="cursorPointer"
+                (click)="resetEvent($event)" [disabled]="(disableAction || isAnalizandoData) || !permisoExIntegrador.editar" />
+            <i class="bi bi-file-arrow-up iSize" aria-hidden="true"
+                [ngClass]="{'iSizeDisable': (disableAction || isAnalizandoData) || !permisoExIntegrador.editar}"></i>
+            <h3 [ngClass]="{'fontDisable': (disableAction || isAnalizandoData) || !permisoExIntegrador.editar}">Arrastra y suelta aquí</h3>
+            <h3 [ngClass]="{'fontDisable': (disableAction || isAnalizandoData) || !permisoExIntegrador.editar}">o</h3>
+            <label for="fileDropRef" class="my-auto"
+                [ngClass]="{'labelDisable': (disableAction || isAnalizandoData) || !permisoExIntegrador.editar}">Buscar archivo</label>
+        </div>
+        <br>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-7">
+        <div class="files-list">
+            <div class="single-file">
+                <div class="file-icon">
+                    <i class="bi bi-paperclip" aria-hidden="true"></i>
+                </div>
+                <div class="info" *ngIf="archivo">
+                    <h4 class="name">
+                        {{ archivo.name }}
+                    </h4>
+                    <p class="size">
+                        {{ formatBytes(archivo.size) }}
+                    </p>
+                </div>
+                <div class="delete">
+                    <button class="btn btn-primary guardaModifica" [disabled]="!archivoCargado"
+                        (click)="procesaExcel()">
+                        {{!isAnalizandoData ? 'Analizar' : ''}}
+                        <div class="row d-flex justify-content-center ngxSpinner" *ngIf="isAnalizandoData">
+                            <ngx-spinner bdColor="rgba(0,0,0,0.1)" size="small" color="#FFFFFF" type="ball-clip-rotate"
+                                [fullScreen]="false"></ngx-spinner>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="isAnalizado">
+            <strong>Análisis:</strong>
+            <div class="row" *ngFor="let analisis of AnalisisProcesos">
+                <div class="col-sm-9">{{analisis.Name}}</div>
+                <div class="col-auto">
+                    <i class="bi bi-arrow-clockwise" aria-hidden="true" *ngIf="!analisis.Estado"></i>
+                    <i class="bi bi-check2" aria-hidden="true" *ngIf="analisis.Estado"></i>
+                </div>
+            </div>
+            <hr>
+            <strong>Resultado del análisis:</strong>
+            <div class="row" *ngFor="let proceso of procesos">
+                <div class="col-sm-9"> {{proceso.key}} :</div>
+                <div class="col-sm-1"> {{proceso.value}}</div>
+                <div *ngIf="proceso.value > 0" class="col-auto cursorPointer" [innerHTML]="proceso.verMas"
+                    (click)="verMas(proceso.id)"></div>
+            </div>
+            <hr>
+            <div class="row  d-flex justify-content-end">
+                <div class="col-auto">
+                    <button class="btn btn-primary guardaModifica" [disabled]="hasError"
+                        (click)="guardaExamenesIntegrador()">
+                        {{!isSavingData ? 'Guardar' : ''}}
+                        <div class="row d-flex justify-content-center ngxSpinner" *ngIf="isSavingData">
+                            <ngx-spinner bdColor="rgba(0,0,0,0.1)" size="small" color="#FFFFFF" type="ball-clip-rotate"
+                                [fullScreen]="false"></ngx-spinner>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            <br />
+        </div>
+    </div>
+</div>

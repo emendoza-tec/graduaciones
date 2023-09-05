@@ -1,0 +1,25 @@
+.btn-enviar {
+    width: 102px;
+    height: 31px;
+    background: #FFFFFF;
+    box-shadow: 0 0 3px rgb(0 0 0 / 25%);
+    border-radius: 5px;
+    color: #3E44E7;
+    font-weight: 400;
+    font-size: 18px;
+    padding: 0;
+}
+.btn-enviar:hover {
+    width: 102px;
+    height: 31px;
+    background: #FFFFFF;
+    box-shadow: 0 0 3px rgb(0 0 0 / 25%);
+    border-radius: 5px;
+    color: #3E44E7;
+    font-weight: 400;
+    font-size: 18px;
+}
+::ng-deep.mat-select-arrow {
+  display: none;
+}
+

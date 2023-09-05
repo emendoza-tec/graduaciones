@@ -1,0 +1,89 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom box-shadow mb-3 menu">
+
+    <img src="/assets/img/Rectangle223.png" class="rectangle" alt="rectangulo header">
+    <img src="/assets/img/Frame.png" class="frame" alt="frame">
+
+    <div *ngIf="!movil" class="navbar-brand app-title">{{'navMenu.titulos' | translate}}</div>
+
+    <a class="navbar-brand"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul [ngClass]="{'menuMovil': movil, 'justify-content-end': !movil}"
+        class="navbar-nav ms-auto mb-2 mb-lg-0 menu-item sd-flex">
+
+        <div [ngStyle]="{'position': movil ? 'relative': 'absolute', 'left': movil ? '0' : '50%' }">
+          <a class="nav-link text-dark f14b dropdown-toggle" role="button" routerLink="/home">
+            <i class="bi bi-house-door" aria-hidden="true"></i><span class="f14b text-dark"
+              style="margin-left: 8px;">{{'navMenu.titulos' | translate}}</span>
+          </a>
+        </div>
+
+        <li class="nav-item dropdown">
+
+          <a [ngClass]="{'nav-link': movil, 'text-dark': movil}" class=" f14b" [ngStyle]="{'position': movil ? 'relative': 'absolute', 'top': movil ? '0' : '8px', 'right': movil ? '0' : '14px' }"
+            role="button" (click)="verNotificaciones()">
+            <i class="bi bi-bell" aria-hidden="true"><span style="color:red;font-size:10px;position: absolute;">{{notificacionesCount}}</span></i>
+          </a>
+          <ul *ngIf="mostrarAvisos" class="modal-avisos right-menu" [ngClass]="{'modal-avisos-movil': movil}">
+            <h2 class="text-center" style="font-size: 30px; font-weight: bold;">{{'navMenu.avisos' | translate}}</h2>
+
+            <a class="float-end" style="cursor: pointer;" (click)="abrirModalAvisos()">
+              <i class="bi bi-three-dots" aria-hidden="true"
+                style="font-size: 14px !important;position: absolute; right: 10px; top: 12px;"></i>
+            </a>
+            <div *ngIf="mostarModalAvisos" class="float-end opciones-avisos">
+              <div class="item-list" style="cursor: pointer;" (click)="marcarTodasComoLeidas()">
+                <em class="bi bi-check-square"></em>
+                <span class="label-negrita">{{'navMenu.todosLeidos' | translate}}</span>
+              </div>
+              <div class="item-list" (click)="verAvisos()" style="cursor: pointer;"><em class="bi bi-tv"></em>
+                <span class="label-negrita">{{'navMenu.verTodos' | translate}}</span>
+              </div>
+            </div>
+            <li class="ps-3 pe-3">
+              <a class="dropdown-item p-0" *ngFor="let notificacion of Notificaciones">
+                <div class="row hov"
+                  (click)="marcarComoLeida(notificacion.id, notificacion.isNotificacion,notificacion.activo)"
+                  [ngStyle]="{'background-color': notificacion.activo ? '#F1F2FE': '#ffffff' }">
+                  <div class="col-2 mt-auto mb-auto">
+                    <img src="assets/img/Group 589.png" alt="habilitador" />
+                  </div>
+                  <div class="col-9 ms-2 pe-0" style="cursor: pointer;"
+                    (click)="verAvisosNotificaciones(notificacion.aviso)">
+                    <div class="f20c" style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"
+                      title="{{notificacion.titulo}}">{{notificacion.titulo}}</div>
+                    <div class="f16 overflow-visible" style="white-space: nowrap;"
+                      [title]="parsedText(notificacion.texto)" [innerHTML]="notificacion.texto"></div>
+                    <span class="f14" style="color:#6368E7; text-transform: lowercase;">{{notificacion.tiempo | date:'d
+                      De MMMM De y'}}</span>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <div class="avi" (click)="verAvisos()"><u style="cursor: pointer;">{{'navMenu.verTodos' | translate}}</u>
+            </div>
+          </ul>
+        </li>
+        <li class="nav-item pull-right">
+          <a class="nav-link text-dark f14b" role="button" (click)="dataupdateevent.emit()">ES/EN</a>
+        </li>
+        <li class="nav-item" style="display:none">
+          <a class="nav-link text-dark f14b" role="button"><i class="bi bi-emoji-smile" aria-hidden="true"></i>
+            {{'navMenu.opina' | translate}}</a>
+        </li>
+        <li class="nav-item dropdown ">
+          <a class="nav-link text-dark f14b" href="*" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false"  style="cursor: pointer" (click)="logOut()">
+            <i class="bi bi-person-circle" aria-hidden="true"></i>
+            {{'navMenu.cerrarSesion' | translate}}            
+          </a>
+
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>

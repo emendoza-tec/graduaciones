@@ -1,0 +1,52 @@
+<app-header-admin [titulo]="'Calendario'" [breadCumbs]="'Calendario /'"></app-header-admin>
+<div class="container-fluid">
+    <div class="container">
+        <mat-form-field>
+            <input matInput #filter (keyup)="busqueda($event)" placeholder="Buscar" [(ngModel)]="filtro">
+        </mat-form-field>
+
+        <mat-table #table [dataSource]="dataSource">
+            <ng-container matColumnDef="campus">
+                <mat-header-cell *matHeaderCellDef>Campus</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.campus}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="linkProspecto">
+                <mat-header-cell *matHeaderCellDef>Link Prospecto</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <mat-form-field floatLabel="never">
+                        <input matInput placeholder="Link Prospecto" (keydown)="actualizar(element.calendarioId)"
+                            (change)="actualizar(element.calendarioId)" [value]="element.linkProspecto"
+                            [(ngModel)]="element.linkProspecto"
+                            [disabled]="!element.permiso">
+                    </mat-form-field>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="linkCandidato">
+                <mat-header-cell *matHeaderCellDef> Link Candidato a Graduar</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <mat-form-field floatLabel="never">
+                        <input matInput placeholder="Link Candidato a Graduar"
+                            (keydown)="actualizar(element.calendarioId)" [value]="element.linkCandidato"
+                            [(ngModel)]="element.linkCandidato"
+                            [disabled]="!element.permiso">
+                    </mat-form-field>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+    </div>
+    <br>
+    <div class="row d-flex justify-content-end">
+        <div class="col-auto">
+            <button (click)="actualizarCalendarios()"
+                class="btn-guardar btn-primary btn btn-default"
+                [disabled]="!permisoEditar">Actualizar</button>
+        </div>
+    </div>
+</div>
+<ngx-spinner bdColor="rgba(0,0,0,0.1);" size="large" color="#000000" type="ball-clip-rotate" size="default"
+    [fullScreen]="false" style="padding: 30px;"></ngx-spinner>

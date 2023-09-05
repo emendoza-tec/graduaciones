@@ -1,0 +1,26 @@
+.mat-dialog-content {
+  overflow: auto;
+  max-height: 80vh;
+  padding: 0 16px;
+}
+.btn-cancelar {
+  background-color: red;
+}
+.center-text {
+  text-align: center;
+  font-weight: bold;
+}
+
+.propety-name {
+  font-weight: bold;
+  padding-left: 50px;
+}
+
+.property-value {
+  font-weight: normal;
+  padding-left: 10px;
+}
+
+.subtittle-margin {
+  margin-left:20%;
+}

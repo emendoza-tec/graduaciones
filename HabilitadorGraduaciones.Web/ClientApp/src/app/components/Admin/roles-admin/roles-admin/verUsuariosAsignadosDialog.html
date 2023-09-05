@@ -1,0 +1,19 @@
+<div class="row d-flex text-center">
+    <div class="col">
+        <h1 mat-dialog-title>Usuarios asignados al rol "<span class="spanEliminarModal">{{data.rol.descripcion}}</span>"
+        </h1>
+    </div>
+</div>
+<div class="row" *ngFor="let usuario of data.rol.usuarios">
+    <div class="col-auto child"><i class="bi bi-person-check iconSizeUsuariosAsignados"></i></div>
+    <strong class="col-auto child">{{usuario.numeroNomina}}</strong>
+    <div class="col child">{{usuario.nombre}}</div>
+</div>
+<br>
+<div mat-dialog-content>
+    <div class="row justify-content-end">
+        <div class="col-auto">
+            <button class="btn btn-primary" (click)="aceptar();">Aceptar</button>
+        </div>
+    </div>
+</div>

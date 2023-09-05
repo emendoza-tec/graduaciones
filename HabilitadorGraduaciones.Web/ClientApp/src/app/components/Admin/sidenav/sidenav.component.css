@@ -1,0 +1,228 @@
+.row {
+  margin-right: 0px;
+  margin-left: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-top: 0;
+}
+
+.col-auto {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+
+img {
+  padding: 5px;
+}
+
+.vertical-center {
+  display: flex;
+  align-items: center;
+}
+
+.vertical-center h2 {
+  margin: 0px;
+}
+
+hr {
+  width: 80%;
+  height: 2px;
+  background: #3E44E7;
+  border: none;
+}
+
+.menuPrincipal{
+  padding-right: 15px;
+  margin-bottom: 10px;
+}
+
+.side-menu {
+  margin-bottom: 0px;
+  list-style: none;
+  padding-left: 0px;
+}
+
+.side-menu__item {
+  cursor: pointer;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 25px;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 19px;
+  font-weight: 400;
+  -webkit-transition: border-left-color 0.3s ease, background-color 0.3s ease;
+  -o-transition: border-left-color 0.3s ease, background-color 0.3s ease;
+  transition: border-left-color 0.3s ease, background-color 0.3s ease;
+  color: #000000;
+  white-space: normal;
+  text-decoration: none;
+}
+
+.side-menu__item_closed {
+  cursor: pointer;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  margin-left: 20px;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 19px;
+  font-weight: 400;
+  -webkit-transition: border-left-color 0.3s ease, background-color 0.3s ease;
+  -o-transition: border-left-color 0.3s ease, background-color 0.3s ease;
+  transition: border-left-color 0.3s ease, background-color 0.3s ease;
+  color: #000000;
+  white-space: normal;
+  text-decoration: none;
+}
+
+.side-menu__itemHijo {
+  cursor: pointer;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 25px;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 19px;
+  font-weight: 400;
+  -webkit-transition: border-left-color 0.3s ease, background-color 0.3s ease;
+  -o-transition: border-left-color 0.3s ease, background-color 0.3s ease;
+  transition: border-left-color 0.3s ease, background-color 0.3s ease;
+  color: #000000;
+  white-space: normal;
+  text-decoration: none;
+}
+
+.side-menu__itemHijo_closed {
+  cursor: pointer;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  margin-right: 0px;
+  padding-right: 0px;
+  margin-left: 0px;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 19px;
+  font-weight: 400;
+  -webkit-transition: border-left-color 0.3s ease, background-color 0.3s ease;
+  -o-transition: border-left-color 0.3s ease, background-color 0.3s ease;
+  transition: border-left-color 0.3s ease, background-color 0.3s ease;
+  color: #000000;
+  white-space: normal;
+  text-decoration: none;
+}
+
+
+.ul__subMenu_closed{
+  padding-left: 20px !important;
+}
+
+.side-menu__item i{
+  color: #707070;
+}
+
+.side-menu__itemHijo i{
+  color: #707070;
+}
+
+.side-menu__item_closed i{
+  color: #707070;
+}
+
+.side-menu__itemHijo_closed i{
+  color: #707070;
+}
+
+.side-menu__item.active,
+.side-menu__item:hover,
+.side-menu__item:focus {
+  background-color: #3E44E7;
+  color: white;
+  border-radius: 0px 15px 15px 0px !important;
+}
+
+
+.side-menu__itemHijo.active,
+.side-menu__itemHijo:hover,
+.side-menu__itemHijo:focus {
+  background-color: #3E44E7;
+  color: white;
+  border-radius: 0px 15px 15px 0px !important;
+}
+
+.side-menu__item_closed.active,
+.side-menu__item_closed:hover,
+.side-menu__item_closed:focus {
+  background-color: #3E44E7;
+  color: white;
+  border-radius: 100%;
+}
+
+.side-menu__itemHijo_closed.active,
+.side-menu__itemHijo_closed:hover,
+.side-menu__itemHijo_closed:focus {
+  background-color: #3E44E7;
+  color: white;
+  border-radius: 100%;
+}
+
+.side-menu__item.active i,
+.side-menu__item:hover i,
+.side-menu__item:focus i{
+  color: white;
+}
+
+.side-menu__item_closed.active i,
+.side-menu__item_closed:hover i,
+.side-menu__item_closed:focus i{
+  color: white;
+}
+
+
+.side-menu__itemHijo.active i,
+.side-menu__itemHijo:hover i,
+.side-menu__itemHijo:focus i{
+  color: white !important;
+}
+
+.side-menu__itemHijo_closed.active i,
+.side-menu__itemHijo_closed:hover i,
+.side-menu__itemHijo_closed:focus i{
+  color: white !important;
+}
+
+.side-menu__label{
+  padding-left: 10px;
+}
+
+.logoMenu{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.iconArrow{
+  margin-right: 10px;
+}

@@ -1,0 +1,302 @@
+{
+  "tarjetas": {
+    "titulos": {
+      "1": "Tec Weeks",
+      "2": "English Level",
+      "3": "Social Responsibility",
+      "4": "Record",
+      "5": "Study Plan",
+      "6": "Knowledge Test",
+      "7": "Integrated Exam",
+      "8": "Educational Units in a language other than Spanish",
+      "9": "Credits Abroad"
+    },
+    "contenido": {
+      "semanas": {
+        "acreditadas": "Accredited weeks",
+        "requisito": "Required weeks"
+      },
+      "ingles": {
+        "acreditadas": "Accredited level",
+        "requisito": "Required level",
+        "subtitulo": "Official graduation test"
+
+      },
+      "expediente": {
+        "acreditadas": "You have all the documents in your file",
+        "requisito": "You don't have all the documents in your file"
+      },
+      "plan-estudio": {
+        "acreditadas": "Accredited credits",
+        "requisito": "Required credits",
+        "etapaExploracion": "Check your progress in the study plan once you have selected your graduation career."
+      },
+      "servicio-social": {
+        "acreditadas": "Accredited hours",
+        "requisito": "Required hours"
+      },
+      "ceneval": {
+        "acreditadas": "Your career is exempt from presenting the knowledge exam",
+        "requisito": "Exam application date"
+      },
+      "integrador": {
+        "presentado": "Integrated exam presented",
+        "requisito": "Date of presentation",
+        "acreditadas": "It's not a requirement for your current career",
+        "proximamente": "Coming soon"
+      },
+      "uf": {
+        "acreditadas": "Accredited",
+        "requisito": "Required"
+      },
+      "creditos-extranjero": {
+        "acreditadas": "Accredited credits",
+        "requisito": "Required credits"
+      },
+      "examen-conocimientos": {
+        "requisito": "Exam application date",
+        "acreditadas": "Your career is exempt from presenting the knowledge exam",
+        "proximamente": "Coming soon"
+      }
+    }
+  },
+  "modalDetalleExpediente": {
+    "estatus": "Status",
+    "noCumple": "Not fulfills",
+    "cumple": "Meets",
+    "dudas": "Questions",
+    "estMexicano": "Mexican Student",
+    "estExtranjero": "Foreign Student",
+    "comentarios": "Comments"
+  },
+  "modalDetalleCeneval": {
+    "FechaAplicacionDeExamen": "Exam application date",
+    "estatus": "Status",
+    "noCumple": "Not fulfills",
+    "cumple": "Meets",
+    "dudas": "Questions"
+  },
+
+  "modal-detalle": {
+    "estatus": "Status",
+    "fecha": "Last update",
+    "dudas": "Questions"
+  },
+  "navMenu": {
+    "titulos": "Graduation",
+    "opina": "Give your opinion",
+    "avisos": "Notices",
+    "todosLeidos": "Mark all as read",
+    "verTodos": "View all notices",
+    "cerrarSesion": "Logout"
+  },
+  "encabezado": {
+    "titulo": "Graduation"
+  },
+  "principal": {
+    "saludo": "Hi",
+    "mensajeProspecto": "",
+    "mensajeCandidato": "you’re now considered a candidate to graduate",
+    "mensajeAlumnoNormal": "",
+    "mensajeExploracion": "you are in exploration phase"
+  },
+  "miInformacion": {
+    "titulo": "My information",
+    "btnEditar": "Edit",
+    "matricula": "Registration number:",
+    "progAcademico": "Current career:",
+    "advertencia": "Graduation needs to have your information always updated."
+  },
+  "miAcompanamiento": {
+    "titulo": "My accompaniment",
+    "dirPrograma": "Program Director",
+    "mentorEstudiantil": "Student mentor"
+  },
+  "miRecorridoGraduacion": {
+    "titulo": "My journey to graduation:",
+    "tituloMovil": "My journey:"
+  },
+  "estimacionGraduacion": {
+    "titulo": "We estimate your graduation in:",
+    "titulo-confirmado": "Selected and confirmed graduation period:",
+    "modificarFecha": "Change date"
+  },
+  "requisitosAcademicosG": {
+    "titulo": "Academic requirements of graduation",
+    "ultimaActualizacion": "Last update:",
+    "cumple": "Meets",
+    "noCumple": "Not fulfills",
+    "noAplica": ""
+  },
+  "distincionesAdicionales": {
+    "titulo": "Additional recognitions",
+    "concentracion": "Concentration(s) registered INGLÉS: ",
+    "diplomaInt": "Diploma(s) adicionale(s) Inscrito(s) INGLÉS: ",
+    "ulead": "ULead",
+    "advertencia": "To obtain the diplomas, you must meet all the requirements.",
+    "estasInscrito": "You are enrolled in:",
+    "noConcentracion": "You do not have any additional concentration registered",
+    "noDistincionesConcetracion": "You do not have any recognition or concentration registered",
+    "tooltip": "Para obtener tu diploma es indispensable que cumplas con los requisitos estipulados de la concentración o de la distinción según sea el caso",
+    "Click": "Consult them here",
+    "concentracionL" : "Concentration: ",
+    "diplomaInternacional": "Diploma internacional",
+    "uleadL": "Diploma ULead"
+  },
+  "tramitesAdministrativos": {
+    "titulo": "Administrative transactions",
+    "tesoreria": "Treasury",
+    "prestamoEducativo": "Educational Loan",
+    "actualizacion": "Update:",
+    "gestionCuenta": "Account Management"
+  },
+  "avisos": {
+    "titulo": "Notices",
+    "verMas": "See more"
+  },
+  "movil": {
+    "advertencias": "Graduation needs to have your information always updated.",
+    "cumple": "Meets",
+    "noCumple": "Not fulfills"
+  },
+  "bienvenida": {
+    "titulo": "Welcome! To the final stretch of your career",
+    "texto1": "We've detected that you are approaching to your graduation.",
+    "texto2": "According to your progress in the training units, we have predicted that your graduation period will be in:",
+    "texto3": "Click and select any of the options if you want to confirm or adjust the period, according to your plans.",
+    "btnModificar": "Change date",
+    "btnConfirmar": "Confirm and continue"
+  },
+  "registroExitoso": {
+    "texto1": "You have successfully registered",
+    "texto2": "Your graduation date for:",
+    "texto3": "Your plan to graduate in:",
+    "texto3Intensivo": "Your plan to titulated in:",
+    "texto4": "And you will need to contact the school of your campus",
+    "texto51": "And",
+    "texto5": "to participate in the graduation ceremony of:",
+    "textoSi": "you want ",
+    "textoNo": "you don't wish ",
+    "btnModificar": "Change date",
+    "btnAceptar": "Confirm"
+  },
+  "confirmDialog": {
+    "titulo": "Validación de información personal y académica - ingles",
+    "programaAcademico": "Current academic program:",
+    "curp": "CURP:",
+    "concentracion": "Registered concentration(s): INGLÉS",
+    "diplomasAdicionales": "Registered additional diplomas: INGLÉS",
+    "advertencia": "Toda tu documentación oficial será emitida con tus datos personales validados y <b>NO</b> habrá posibilidad de hacer <b>cambios posteriores</b>, por ello te pedimos que la revises muy bien. ingles",
+    "advertencia2": "Recuerda que deberás concluir los requisitos de tu Concentración y/o Diplomas adicionales para poder ser acreedor(a)Recuerda que los cambios que hagas en tu nombre deberán estar <b>respaldados por tu acta de nacimiento o documento oficial que lo acredite</b> y tu solicitud estará sujeta a la <b>corroboración</b> con tu documentación oficial. ingles",
+    "selectCampus": "Select the campus where you wish to attend the Graduation Ceremony:",
+    "seleccionaCampus": "Select the campus",
+    "btnEditarInformacion": "Edit Information",
+    "btnConfirmar": "Confirm ",
+    "mensajeCampus": "Hemos detectado que has cursado en más de un campus, por lo que puedes seleccionar en donde deseas titularte y vivir tu ceremonia de graduación:  INGLÉS",
+    "articulo6.2": "Con base en el artículo 6.2 del Reglamento Académico, los alumnos de transferencia interna tendrán la opción de elegir el campus que emita su título profesional para lo cual deberá haber cursado, en dicho campus, al menos 36 créditos académicos de su plan de estudios.  INGLÉS",
+    "validacionCorrecta": "¡La validación de tus datos se ha registrado exitosamente!  INGLÉS",
+    "correoConfirmacion": "Recibirás un correo electrónico con tu confirmación.  INGLÉS",
+    "validacionNota": "Es importante para nosotros que tengas actualizados tus datos de contacto. Por favor, verifica que sean los más actualizados dando clic en tu nombre dentro de MiTec. Haz clic en \"Editar Datos de Contacto\".",
+    "btnAceptar": "Aceptar",
+    "confirmacion": {
+      "titulo": "¡Gracias por tu confirmación!",
+      "mensaje": "Tus documentos se emitirán con la siguiente información confirmada:",
+      "mensaje2": "Es importante para nosotros que tengas actualizados tus datos de contacto, por favor verifica en la siguiente pantalla si tu información es correcta.",
+      "btnConfirmacion": "Continuar"
+    }
+  },
+  "formDialog": {
+    "btnGuardar": "Save",
+    "curp": "CURP"
+  },
+  "modificarFecha": {
+    "encabezado": "Selecciona el periodo en el que planeas cumplir con todos tus requisitos de graduación:INGLÉS",
+    "texto": "Las ceremonias de graduación se realizan posterior al cierre de los semestres, es importante que consideres que si seleccionas un periodo de verano o invierno y deseas participar en una ceremonia de graduación,",
+    "textoSubyrayado": " tu participación será en la ceremonia siguiente",
+    "textoNegrita": " posterior al término de tus requisitos.INGLÉS",
+    "advertencia": "In summer or winter, there's NO graduation ceremony.",
+    "btnConfirmar": "Confirm",
+    "mensajeMotivo": "Para nosotros es importante conocer el motivo de tu cambio:",
+    "mensajeMotivoNoCeremonia": "¿Podrías indicarnos el motivo de tu selección?"
+  },
+  "verAvisos": {
+    "tituloAvisos": "Notices"
+  },
+  "modalCeremonia": {
+    "texto": "You are selecting a period in which there is NO graduation ceremony",
+    "texto1": "Recuerda que las ceremonias de graduación se realizan posterior al cierre de los semestres, es importante que consideres que si deseas participar en una ceremonia de graduación,",
+    "texto1Subrayado": " tu participación será en la ceremonia siguiente",
+    "texto1Negritas": " posterior al término de tus requisitos.",
+    "texto2": " (es decir, si seleccionaste verano, la ceremonia donde podrás participar es la de diciembre y si seleccionas invierno, la ceremonia donde podrás participar es la de junio/julio)",
+    "pregunta": "If you wish you can be part of the next ceremony. Do you want to participate?",
+    "textoCeremonia": "¿Te gustaría participar en la siguiente ceremonia de graduación?",
+    "si": "Yes",
+    "no": "No",
+    "noseTodavia": "I don’t know yet",
+    "btnConfirmar": "Confirm"
+  },
+  "modalDetalle": {
+    "noRequisito": "It is not a requirement of your career",
+    "cumple": "Meets",
+    "noCumple": "Not fulfills"
+  },
+  "modalDetalleExpedieFnte": {
+    "estatus": "Status",
+    "cumple": "Meets",
+    "noCumple": "Not fulfills",
+    "dudas": "Questions:",
+    "comentarios": "Comments:"
+  },
+  "modal-creditos-insuficientes": {
+    "titulo": "Plan de estudio",
+    "mensaje": "Créditos insuficientes",
+    "detalle": "Tus créditos inscritos no alcanzan para completar tu plan de estudios para el periodo que seleccionaste de graduación en",
+    "advertencia": "Favor de revisar tu situación con tu director de programa o cambiar el periodo de graduación",
+    "boton": "Enterado(a)",
+    "modificar-fecha": "Modificar fecha"
+  },
+  "calendario": {
+    "titulo": "Important information",
+    "detalle": "Pre-graduation website",
+    "tooltip": "It is important that in addition to check your progress in your graduation requirements, you know information about the next steps"
+  },
+  "modalSolicitudesEdicion": {
+    "labelsForm": {
+      "nombre": "Nombre INGLÉS",
+      "CURP": "CURP INGLÉS",
+      "programaAcademico": "Programa Académico INGLÉS",
+      "concentracion": "Concentración INGLÉS",
+      "diploma": "Diploma INGLÉS",
+      "agregarDiploma": "Agregar diploma INGLÉS"
+    },
+    "mensaje": "Si deseas ajustar tus datos, haz clic en el campo a editar y escribe el ajuste requerido. Revisaremos tu solicitud y, si es necesario, adjunta los documentos de respaldo.INGLÉS",
+    "nota": "Nota: Si tu acta de nacimiento o CURP cambiaron después de tu admisión, adjúntalas; si no han cambiado, no es necesario.INGLÉS",
+    "adjuntarArchivo": "Adjuntar archivo INGLÉS",
+    "btnguardar": "Guardar cambios INGLÉS"
+  },
+  "modalResumenSolicitud": {
+    "titulo": "Gracias por tu solicitud INGLÉS ",
+    "mensaje": "Tus datos registrados se validarán con la documentación que tenemos y recibirás respuesta antes de 48 horas. INGLÉS",
+    "informacion": "Información actual: EN",
+    "cambiosSolicitados": "Cambio(s) solicitado(s): INGLÉS",
+    "btnConfirmar": "Confirmar solicitud INGLÉS",
+    "solicitudExitosa": "¡La solicitud de cambios de tus datos se ha registrado exitosamente! INGLÉS",
+    "btnAceptar": "Aceptar INGLÉS",
+    "texto1": "Revisaremos esta información junto con la documentación adjunta, así como la que ya tenemos en el sistema y la normativa vigente. Espera recibir una respuesta en tu correo oficial en un plazo máximo de 48 horas.INGLÉS",
+    "texto2": "Para nosotros es muy importante que también tengas actualizados tus datos de contacto, da clic en \"Editar Datos de Contacto\" y actualízalos. Si los tienes al día, da clic en aceptar.INGLÉS",
+    "editar": "Editar Datos de Contacto INGLÉS"
+  },
+  "modal-examen-conocimiento": {
+    "descripcion": "Exempt degree",
+    "titulo": "Knowledge Test",
+    "nota": "Your career is exempt from presenting the knowledge exam",
+    "integrador": "Integrated Exam"
+  },
+  "bienvenidaCandidatos": {
+    "titulo": "¡Bienvenido(a)! INGLÉS",
+    "texto1": "Hemos llegado al periodo en el que planeas graduarte.INGLÉS",
+    "texto2": "Para ser considerado(a) candidato(a) a graduar, necesitas revisar y administrar tus avances en tus requisitos de graduación.INGLÉS",
+    "texto3": "Pero primero te pedimos que valides la siguiente información personal y académica. INGLÉS",
+    "btnContinuar": "Continuar INGLÉS"
+  }
+}

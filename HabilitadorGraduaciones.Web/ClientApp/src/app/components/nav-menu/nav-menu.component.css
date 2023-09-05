@@ -1,0 +1,80 @@
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+::ng-deep .dropdown-toggle::after {
+  display:none;
+}
+
+::ng-deep .opciones-avisos{
+    padding-left: 37px;
+    position: absolute;
+    background-color: #fff;
+    width: 382px;
+    height: 78px;
+}
+
+::ng-deep .modal-avisos{
+  width:392px;
+  left: -250px !important;
+  background-color: #fff;
+   top: 48px;
+   border-radius:15px; 
+   padding:5px 10px
+}
+
+::ng-deep .modal-avisos-movil {
+  width: 340px;
+  left: -25px !important;
+  background-color: #fff;
+  top: 28px !important;
+  border-radius: 15px;
+  padding: 5px 0px;
+  z-index: 1000 !important;
+}
+
+.hov:hover {
+  background: rgba(99, 104, 231, 0.1) !important;
+}
+
+.overflow-visible {
+  white-space: initial !important;
+}
+.avi {
+  color: #3E44E7;
+  font-family: 'Roboto', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 54px;
+  text-decoration-line: underline;
+  place-items: center;
+  display: grid !important;
+}
+
+.menuMovil{
+  width: 250px;
+  background-color: white;
+  padding: 10px 25px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+
+.nav-link:hover{
+  background-color: whitesmoke !important;
+  border-radius: 5px;
+}

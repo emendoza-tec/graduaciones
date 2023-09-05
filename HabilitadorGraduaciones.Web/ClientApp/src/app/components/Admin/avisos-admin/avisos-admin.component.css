@@ -1,0 +1,170 @@
+.title {
+    position: relative;
+    width: auto;
+    height: 23px;
+    padding-left: 2em;
+    font-family: 'Roboto', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+}
+
+.btn-confirmar {
+    width: 102px;
+    height: 31px;
+    border-radius: 5px;
+    font-weight: 400;
+    font-size: 18px;
+    padding: 0;
+}
+
+.input-txt {
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border: 1px solid #3E44E7;
+    border-radius: 10px;
+}
+
+.text-area {
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border: 1px solid #3E44E7;
+    box-shadow: 0px 2px 8px rgba(62, 68, 231, 0.25);
+    border-radius: 10px;
+    resize: none;
+}
+
+.dropzone {
+    margin-left: calc(var(--bs-gutter-x) * .5);
+    text-align: center;
+    background: #FFFFFF;
+    border: 1px dashed #3E44E7;
+    border-radius: 10px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    min-height: 144px;
+}
+
+.dropzone input {
+    opacity: 0;
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 9em;
+    left: 0;
+}
+
+.dropzone h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: black;
+}
+
+.selects {
+    width: 100%;
+    height: 35px;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.btn-enviar {
+    width: 102px;
+    height: 31px;
+    border-radius: 5px;
+    font-weight: 400;
+    font-size: 18px;
+    padding: 0;
+}
+
+::ng-deep.angular-editor-textarea * {
+    color: black !important;
+}
+
+::ng-deep.angular-editor-textarea>ul>li {
+    list-style-type: disc;
+}
+
+::ng-deep.angular-editor-textarea>ol>li {
+    list-style-type: decimal;
+}
+
+::ng-deep.angular-editor-textarea p>ul>li {
+    list-style-type: disc;
+}
+
+::ng-deep.angular-editor-textarea p>ol>li {
+    list-style-type: decimal;
+}
+
+::ng-deep.angular-editor-toolbar[_ngcontent-ng-cli-universal-c121] {
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border: 1px solid #3E44E7 !important;
+    border-radius: 10px;
+}
+
+::ng-deep.angular-editor[_ngcontent-ng-cli-universal-c122] .angular-editor-wrapper[_ngcontent-ng-cli-universal-c122] .angular-editor-textarea[_ngcontent-ng-cli-universal-c122] {
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border: 1px solid #3E44E7 !important;
+    border-radius: 10px;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: 0;
+    min-height: 40px;
+    max-height: 40px;
+}
+
+::ng-deep .mat-select-min-line {
+    font-weight: 600;
+    font-size: 15px;
+    text-overflow: ellipsis;
+}
+
+
+
+:host ::ng-deep .mat-form-field-wrapper {
+    margin: 0 !important;
+    padding: 0;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-select-arrow-wrapper {
+    color: red;
+    transform: translateY(0%) !important;
+}
+
+.error {
+    color: red;
+}
+
+.validado {
+    color: black;
+}
+
+.drop-down-box {
+    border: 1px solid #ced4da;
+    outline: 0;
+    box-shadow: 0 0 0 0;
+    border-radius: 5px;
+}
+
+::ng-deep.mat-select-arrow {
+    display: none;
+}
+
+::ng-deep .mat-form-field-underline {
+    display: none;
+}
+
+::ng-deep .mat-form-field-label {
+    transform: translateY(-0.75em) translateX(10px);
+    font-size: 0.75em;
+}
+
+::ng-deep .mat-form-field-label-wrapper {
+    transform: translate(10px, 10px);
+}
+

@@ -1,0 +1,286 @@
+{
+  "tarjetas": {
+    "titulos": {
+      "1": "Semanas Tec",
+      "2": "Nivel de Inglés",
+      "3": "Servicio Social",
+      "4": "Expediente",
+      "5": "Plan de Estudios",
+      "6": "Examen de Conocimientos",
+      "7": "Examen Integrador",
+      "8": "UF’s en idioma distinto al español",
+      "9": "Créditos en el Extranjero"
+    },
+    "contenido": {
+      "semanas": {
+        "acreditadas": "Semanas acreditadas",
+        "requisito": "Semanas requisito"
+      },
+      "ingles": {
+        "acreditadas": "Nivel acreditado",
+        "requisito": "Nivel requisito",
+        "subtitulo": "Examen oficial para graduación"
+      },
+      "expediente": {
+        "acreditadas": "Tienes todos los documentos de tu expediente",
+        "requisito": "No tienes todos los documentos de tu expediente"
+      },
+      "plan-estudio": {
+        "acreditadas": "Créditos acreditados",
+        "requisito": "Créditos requisito",
+        "etapaExploracion": "Consulta tu avance de Plan de Estudios una vez que hayas selccionando tu carrera de egreso."
+      },
+      "servicio-social": {
+        "acreditadas": "Horas acreditadas",
+        "requisito": "Horas requisito"
+      },
+      "ceneval": {
+        "acreditadas": "Créditos acreditados",
+        "requisito": "Créditos requisito"
+      },
+      "integrador": {
+        "presentado": "Has presentado tu examen integrador",
+        "requisito": "Fecha de presentación",
+        "acreditadas": "No es requisito de tu carrera",
+        "proximamente": "Próximamente"
+      },
+      "uf": {
+        "acreditadas": "Acreditados",
+        "requisito": "Requisito"
+      },
+      "creditos-extranjero": {
+        "acreditadas": "Créditos acreditados",
+        "requisito": "Créditos requisito"
+      },
+      "examen-conocimientos": {
+        "requisito": "Fecha aplicación de examen",
+        "acreditadas": "Tu carrera queda exenta de presentar el examen de conocimientos",
+        "proximamente": "Próximamente"
+      }
+    }
+  },
+  "modal-detalle": {
+    "estatus": "Estatus",
+    "fecha": "Última Actualización",
+    "dudas": "Dudas",
+    "noRequisito": "No es requisito de tu carrera",
+    "cumple": "Cumple",
+    "noCumple": "No Cumple"
+  },
+  "navMenu": {
+    "titulos": "Graduación",
+    "opina": "Opina",
+    "avisos": "Avisos",
+    "todosLeidos": "Marcar todos como leídos",
+    "verTodos": "Ver todos los avisos",
+    "cerrarSesion": "Cerrar Sesión"
+  },
+  "encabezado": {
+    "titulo": "Graduación"
+  },
+  "principal": {
+    "saludo": "Hola",
+    "mensajeProspecto": "",
+    "mensajeCandidato": "Ahora eres considerado(a) Candidato(a) a Graduar",
+    "mensajeAlumnoNormal": "",
+    "mensajeExploracion": "Te encuentras en etapa de Exploración"
+  },
+  "miInformacion": {
+    "titulo": "Mi información",
+    "btnEditar": "Editar",
+    "matricula": "Matrícula",
+    "progAcademico": "Programa académico actual: ",
+    "advertencia": "Es importante para Graduación que tu información esté siempre actualizada."
+  },
+  "miAcompanamiento": {
+    "titulo": "Mi Acompañamiento",
+    "dirPrograma": " Dir. de Programa",
+    "mentorEstudiantil": "Mentor/a estudiantil"
+  },
+  "miRecorridoGraduacion": {
+    "titulo": "Mi recorrido hacia graduación: ",
+    "tituloMovil": "Mi recorrido:"
+  },
+  "estimacionGraduacion": {
+    "titulo": "Estimamos tu graduación en: ",
+    "titulo-confirmado": "Periodo de graduación estimado y seleccionado: ",
+    "modificarFecha": "Modificar Fecha"
+  },
+  "requisitosAcademicosG": {
+    "titulo": "Requisitos Académicos de Graduación",
+    "ultimaActualizacion": "Última Actualización: ",
+    "cumple": "Cumple",
+    "noCumple": "No Cumple",
+    "noAplica": ""
+  },
+  "distincionesAdicionales": {
+    "titulo": "Distinciones Adicionales",
+    "concentracion": "Concentración(es) inscrita(s): ",
+    "diplomaInt": "Diploma(s) adicionale(s) Inscrito(s): ",
+    "ulead": "Ulead",
+    "advertencia": "Para obtener los diplomas, deberás cumplir con todos los requisitos.",
+    "estasInscrito": "Estás inscrito en:",
+    "noConcentracion": "No tienes registrada ninguna concentración adicional",
+    "noDistincionesConcetracion": "No tienes registrada ninguna distinción o concentración",
+    "tooltip": "Para obtener tu diploma es indispensable que cumplas con los requisitos estipulados de la concentración o de la distinción según sea el caso, consultalos en el link del texto inferior del apartado de distinciones adicionales",
+    "Click": "Consúltalos aquí",
+    "concentracionL" : "Concentración: ",
+    "diplomaInternacional": "Diploma internacional",
+    "uleadL": "Diploma ULead"
+  },
+  "tramitesAdministrativos": {
+    "titulo": "Trámites Administrativos",
+    "tesoreria": "Tesorería",
+    "prestamoEducativo": "Préstamo Educativo",
+    "actualizacion": "Actualización:",
+    "gestionCuenta": "Estado de cuenta"
+  },
+  "avisos": {
+    "titulo": "Avisos",
+    "verMas": "Ver más"
+  },
+  "movil": {
+    "advertencias": "Es importante para Graduación que tu información esté siempre actualizada.",
+    "cumple": "Cumple",
+    "noCumple": "No Cumple"
+  },
+  "bienvenida": {
+    "titulo": "¡Bienvenido(a)! A la recta final de tu carrera",
+    "texto1": "Hemos detectado que te acercas a tu meta de graduación.",
+    "texto2": "Según tu avance en tus unidades de formación, tenemos pronosticado que tu periodo de graduación será en:",
+    "texto3": "Da click en alguna de las opciones si quieres confirmar o ajustar el periodo, según tus planes.",
+    "btnModificar": "Modificar Fecha",
+    "btnConfirmar": "Confirmar y continuar"
+  },
+  "registroExitoso": {
+    "texto1": "Se ha registrado de manera exitosa",
+    "texto2": "Tu fecha de titulación para:",
+    "texto3": "Tu plan de graduarte en:",
+    "texto3Intensivo": "Tu plan de titularte en:",
+    "texto4": "Y deberás comunicarte con el escolar de tu campus",
+    "texto51": "Y",
+    "texto5": "participarías en la ceremonia de ",
+    "textoSi": "Si",
+    "textoNo": "No",
+    "btnModificar": "Modificar Fecha",
+    "btnAceptar": "Aceptar"
+  },
+  "confirmDialog": {
+    "titulo": "Validación de información personal y académica",
+    "programaAcademico": "Programa acádemico actual:",
+    "curp": "CURP:",
+    "concentracion": "Concentración(es) inscrita(s):",
+    "diplomasAdicionales": "Diploma(s) adicionale(s) inscrito(s:",
+    "advertencia": "Toda tu documentación oficial será emitida con tus datos personales validados y <b>NO</b> habrá posibilidad de hacer <b>cambios posteriores</b>, por ello te pedimos que la revises muy bien.",
+    "advertencia2": "Recuerda que los cambios que hagas en tu nombre deberán estar <b>respaldados por tu acta de nacimiento o documento oficial que lo acredite</b> y tu solicitud estará sujeta a la <b>corroboración</b> con tu documentación oficial.",
+    "selectCampus": "Selecciona el campus en donde deseas asistir a la Ceremonia de Graduación:",
+    "seleccionaCampus": "Selecciona el campus",
+    "btnEditarInformacion": "Editar Información",
+    "btnConfirmar": "Confirmar",
+    "mensajeCampus": "Hemos detectado que has cursado en más de un campus, por lo que puedes seleccionar en donde deseas titularte y vivir tu ceremonia de graduación:",
+    "articulo6.2": "Con base en el artículo 6.2 del Reglamento Académico, los alumnos de transferencia interna tendrán la opción de elegir el campus que emita su título profesional para lo cual deberá haber cursado, en dicho campus, al menos 36 créditos académicos de su plan de estudios.",
+    "validacionCorrecta": "¡La validación de tus datos se ha registrado exitosamente!",
+    "correoConfirmacion": "Recibirás un correo electrónico con tu confirmación.",
+    "validacionNota": "Es importante para nosotros que tengas actualizados tus datos de contacto. Por favor, verifica que sean los más actualizados dando clic en tu nombre dentro de MiTec. Haz clic en \"Editar Datos de Contacto\".",
+    "btnAceptar": "Aceptar",
+    "confirmacion":{
+      "titulo": "¡Gracias por tu confirmación!",
+      "mensaje": "Tus documentos se emitirán con la siguiente información confirmada:",
+      "mensaje2": "Es importante para nosotros que tengas actualizados tus datos de contacto, por favor verifica en la siguiente pantalla si tu información es correcta.",
+      "btnConfirmacion": "Continuar"
+    }
+  },
+  "formDialog": {
+    "btnGuardar": "Guardar"
+  },
+  "modificarFecha": {
+    "encabezado": "Selecciona el periodo en el que planeas cumplir con todos tus requisitos de graduación:",
+    "texto": "Las ceremonias de graduación se realizan posterior al cierre de los semestres, es importante que consideres que si seleccionas un periodo de verano o invierno y deseas participar en una ceremonia de graduación,",
+    "textoSubyrayado": " tu participación será en la ceremonia siguiente",
+    "textoNegrita": " posterior al término de tus requisitos.",
+    "advertencia": "Verano o Invierno NO se realizan ceremonias de graduación",
+    "btnConfirmar": "Confirmar",
+    "mensajeMotivo": "Para nosotros es importante conocer el motivo de tu cambio:",
+    "mensajeMotivoNoCeremonia": "¿Podrías indicarnos el motivo de tu selección?"
+  },
+  "verAvisos": {
+    "tituloAvisos": "Avisos"
+  },
+  "modalDetalleCeneval": {
+    "FechaAplicacionDeExamen": "Fecha de aplicación del examen"
+  },
+  "modalCeremonia": {
+    "texto": " Estás seleccionando un periodo en el que no hay ceremonia de graduación",
+    "texto1": "Recuerda que las ceremonias de graduación se realizan posterior al cierre de los semestres, es importante que consideres que si deseas participar en una ceremonia de graduación,",
+    "texto1Subrayado": " tu participación será en la ceremonia siguiente",
+    "texto1Negritas": " posterior al término de tus requisitos.",
+    "texto2": " (es decir, si seleccionaste verano, la ceremonia donde podrás participar es la de diciembre y si seleccionas invierno, la ceremonia donde podrás participar es la de junio/julio)",
+    "pregunta": "¿Te gustaría participar en la siguiente ceremonia de graduación?",
+    "textoCeremonia": "La siguiente ceremonia de graduación se llevará a cabo en:",
+    "si": "Si",
+    "no": "No",
+    "noseTodavia": " No lo sé todavía",
+    "btnConfirmar": "Confirmar"
+  },
+  "modalDetalleExpediente": {
+    "estatus": "Estatus",
+    "cumple": "Cumple",
+    "noCumple": "No Cumple",
+    "dudas": "Dudas:",
+    "estMexicano": "Estudiante Mexicano",
+    "estExtranjero": "Estudiante Extranjero",
+    "comentarios": "Comentarios:"
+  },
+  "modal-creditos-insuficientes": {
+    "titulo": "Plan de estudio",
+    "mensaje": "Créditos insuficientes",
+    "detalle": "Tus créditos inscritos no alcanzan para completar tu plan de estudios para el periodo que seleccionaste de graduación en",
+    "advertencia": "Favor de revisar tu situación con tu director de programa o cambiar el periodo de graduación",
+    "boton": "Enterado(a)",
+    "modificar-fecha": "Modificar fecha"
+  },
+  "calendario": {
+    "titulo": "Información importante",
+    "detalle": "Sitio previo a mi graduación",
+    "tooltip": "Descubre información relevante y útil relacionada al proceso de graduación"
+  },
+  "modalSolicitudesEdicion": {
+    "labelsForm": {
+      "nombre": "Nombre",
+      "CURP": "CURP",
+      "programaAcademico": "Programa Académico",
+      "concentracion": "Concentración",
+      "diploma": "Diploma",
+      "agregarDiploma": "Agregar diploma"
+    },
+    "mensaje": "Si deseas ajustar tus datos, haz clic en el campo a editar y escribe el ajuste requerido. Revisaremos tu solicitud y, si es necesario, adjunta los documentos de respaldo.",
+    "nota": "Nota: Si tu acta de nacimiento o CURP cambiaron después de tu admisión, adjúntalas; si no han cambiado, no es necesario.",
+    "adjuntarArchivo": "Adjuntar archivo",
+    "btnguardar": "Guardar cambios"
+  },
+  "modalResumenSolicitud": {
+    "titulo": "Gracias por tu solicitud",
+    "mensaje": "Tus datos registrados se validarán con la documentación que tenemos y recibirás respuesta antes de 48 horas.",
+    "informacion": "Información actual:",
+    "cambiosSolicitados": "Cambio(s) solicitado(s):",
+    "btnConfirmar": "Confirmar solicitud",
+    "solicitudExitosa": "Se ha registrado con éxito la solicitud de ajustes en tus datos.",
+    "btnAceptar": "Aceptar",
+    "texto1": "Revisaremos esta información junto con la documentación adjunta, así como la que ya tenemos en el sistema y la normativa vigente. Espera recibir una respuesta en tu correo oficial en un plazo máximo de 48 horas.",
+    "texto2": "Para nosotros es muy importante que también tengas actualizados tus datos de contacto, da clic en \"Editar Datos de Contacto\" y actualízalos. Si los tienes al día, da clic en aceptar.",
+    "editar": "Editar Datos de Contacto"
+  },
+  "modal-examen-conocimiento": {
+    "descripcion": "Carrera exenta",
+    "titulo": "Examen de Conocimientos",
+    "nota": "Tu carrera queda exenta de presentar el examen de conocimientos",
+    "integrador": "Examen Integrador"
+  },
+  "bienvenidaCandidatos": {
+    "titulo": "¡Bienvenido(a)!",
+    "texto1": "Hemos llegado al periodo en el que planeas graduarte.",
+    "texto2": "Para ser considerado(a) candidato(a) a graduar, necesitas revisar y administrar tus avances en tus requisitos de graduación.",
+    "texto3": "Pero primero te pedimos que valides la siguiente información personal y académica.",
+    "btnContinuar": "Continuar"
+  }
+}

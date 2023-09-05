@@ -1,0 +1,34 @@
+<div class="container container-outlet">
+    <div [className]=" movil ?  'mx-auto text-center pt-2': 'p-2 mx-auto text-center'">
+      <div class="mx-auto rounded-circle border p-2 mb-3 circulo"><div style="height:8px"></div><em class="p-2 bi bi-journal purple-font icono-modal"></em> </div> 
+      <span [className]=" movil ?  'f20b mx-auto text-center': 'f30  p-1 mt-5 mx-auto text-center'">{{'modal-creditos-insuficientes.titulo' | translate}}</span>
+    </div>
+    <div>
+      <div [className]=" movil ?  'bienvenida-periodo-movil spanNoCumple text-center': 'f18 p-2 mt-2 text-center mx-auto creditos-insuficientes-label'" class="mt-1 mx-auto text-justify">
+        <em class="bi bi-exclamation-circle pe-3"></em>
+        <span>{{'modal-creditos-insuficientes.mensaje' | translate}}</span>
+      </div>
+      <div class="mt-2 mx-auto text-justify" [className]=" movil ?  'bienvenida-periodo-movil': 'f18 p-2'">
+        {{'modal-creditos-insuficientes.detalle' | translate}}
+      </div>
+  
+      <div class="f18 mt-3 mx-auto estimacion-date text-justify" style=" width: 280px; height: 39px; left: 168px; padding-top: 7px;" [ngClass]="{'bienvenida-periodo-movil': movil}">
+        <span>{{periodo}}</span>
+      </div>
+      <div class="mt-1 mx-auto text-justify" [className]=" movil ?  'bienvenida-periodo-movil': 'f18 p-2'">
+        {{'modal-creditos-insuficientes.advertencia' | translate}}
+      </div>
+    </div>
+  
+    <div  [className]=" movil ?  'p-1 mt-1 container': 'p-2 mt-3 container'">
+      <div class="row">
+        <div class="col-6 text-center">
+          <a style="color: black; width: auto;" (click)="abrirModalSelecionPeriodo()" [className]=" movil ?  'f14 link-date cursor-pointer ': 'f16 link-date cursor-pointer float-start'">{{'modal-creditos-insuficientes.modificar-fecha' | translate}}</a>
+        </div>
+        <div class="col-6 text-end pe-2">
+          <button mat-button style="width: auto" (click)="guardarEnterado()" [className]=" movil ?  'f14 btn btn-purple p-0': 'f16 btn btn-purple'">{{'modal-creditos-insuficientes.boton' | translate}}</button>
+        </div>
+      </div>
+    </div>
+  
+  </div>

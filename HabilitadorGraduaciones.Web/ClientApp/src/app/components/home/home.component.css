@@ -1,0 +1,110 @@
+::ng-deep.img-carr {
+    height: 250px;
+    border-radius: 10px;
+}
+
+.carousel-item{
+    display: grid; 
+    place-items: center;
+}
+
+.carousel-grad {
+    position: relative;
+    display: inline-block;
+}
+
+::ng-deep.carousel-grad::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: rgba(62, 68, 231, 0.4);
+    background: radial-gradient(circle, rgba(62, 68, 231, 0.4) 0%, rgba(62, 68, 231, 0.4738270308123249) 100%);
+    border-radius: 10px;
+}
+
+::ng-deep.carousel-caption>p,
+::ng-deep.carousel-caption>h2 {
+    font-weight: 700;
+    color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+::ng-deep.carousel .carousel-indicators button {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+}
+
+::ng-deep.card-avisos {
+    padding: 0 !important;
+}
+
+::ng-deep.title-caption {
+    text-align: center;
+    font-weight: bold !important;
+    top: 0 !important;
+    color: white;
+    z-index: 1;
+    height: 10px;
+}
+
+::ng-deep.btnVer {
+    background: #FFFFFF;
+    border-radius: 8px;
+    color: #3E44E7;
+    font-weight: bold;
+    text-decoration: underline;
+    width: 89px;
+    height: 27px;
+    vertical-align: middle;
+    padding: 0;
+}
+
+::ng-deep.desc-caption {
+    transform: translate(0%, -33%);
+}
+
+.urlIcon:hover {
+    cursor: pointer;
+}
+
+.linkVacio{
+    color: black;
+    text-decoration: none;
+}
+
+::ng-deep .mat-tooltip {
+    font-size: 14px !important;
+}
+.ClaseNormal {
+    margin-top: -1px;
+    line-height: 13px;
+}
+
+.rowRequisitos{
+    padding: 0;
+    margin: 0;
+}
+
+.descRequisito{
+    padding-left: 0;
+    padding-right: 8px;
+}
+
+.tablaRequisitos{
+    width: 90%;
+}
+
+.f17b {
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 100%;
+}
